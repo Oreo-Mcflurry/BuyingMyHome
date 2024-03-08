@@ -13,6 +13,19 @@
 		0B1F83DE2B99838800CBF4DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B1F83DD2B99838800CBF4DE /* Assets.xcassets */; };
 		0B1F83E12B99838800CBF4DE /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0B1F83E02B99838800CBF4DE /* Base */; };
 		0B1F83E92B99860C00CBF4DE /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 0B1F83E82B99860C00CBF4DE /* .gitignore */; };
+		0B1F83FE2B9993C000CBF4DE /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1F83F82B9993C000CBF4DE /* TabbarViewController.swift */; };
+		0B1F84042B9993DF00CBF4DE /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1F83FF2B9993DE00CBF4DE /* BaseCollectionViewCell.swift */; };
+		0B1F84052B9993DF00CBF4DE /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1F84002B9993DE00CBF4DE /* BaseTableViewCell.swift */; };
+		0B1F84062B9993DF00CBF4DE /* BaseUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1F84012B9993DE00CBF4DE /* BaseUIView.swift */; };
+		0B1F84072B9993DF00CBF4DE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1F84022B9993DE00CBF4DE /* BaseViewController.swift */; };
+		0B1F84092B99942E00CBF4DE /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1F84082B99942E00CBF4DE /* MapViewController.swift */; };
+		0B1F840C2B99944E00CBF4DE /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0B1F840B2B99944E00CBF4DE /* SnapKit */; };
+		0B1F840F2B99948200CBF4DE /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0B1F840E2B99948200CBF4DE /* Realm */; };
+		0B1F84112B99948200CBF4DE /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0B1F84102B99948200CBF4DE /* RealmSwift */; };
+		0B1F84142B99949200CBF4DE /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0B1F84132B99949200CBF4DE /* Alamofire */; };
+		0B1F84172B99949B00CBF4DE /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 0B1F84162B99949B00CBF4DE /* Toast */; };
+		0B1F841A2B9994A300CBF4DE /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0B1F84192B9994A300CBF4DE /* Kingfisher */; };
+		0B1F841D2B9994B300CBF4DE /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 0B1F841C2B9994B300CBF4DE /* TextFieldEffects */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +37,12 @@
 		0B1F83E02B99838800CBF4DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0B1F83E22B99838800CBF4DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0B1F83E82B99860C00CBF4DE /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		0B1F83F82B9993C000CBF4DE /* TabbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
+		0B1F83FF2B9993DE00CBF4DE /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		0B1F84002B9993DE00CBF4DE /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		0B1F84012B9993DE00CBF4DE /* BaseUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
+		0B1F84022B9993DE00CBF4DE /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		0B1F84082B99942E00CBF4DE /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +50,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B1F841A2B9994A300CBF4DE /* Kingfisher in Frameworks */,
+				0B1F84112B99948200CBF4DE /* RealmSwift in Frameworks */,
+				0B1F84142B99949200CBF4DE /* Alamofire in Frameworks */,
+				0B1F840F2B99948200CBF4DE /* Realm in Frameworks */,
+				0B1F84172B99949B00CBF4DE /* Toast in Frameworks */,
+				0B1F840C2B99944E00CBF4DE /* SnapKit in Frameworks */,
+				0B1F841D2B9994B300CBF4DE /* TextFieldEffects in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,6 +83,7 @@
 		0B1F83D32B99838500CBF4DE /* BuyingMyHome */ = {
 			isa = PBXGroup;
 			children = (
+				0B1F83EC2B99936A00CBF4DE /* Scene */,
 				0B1F83D42B99838500CBF4DE /* AppDelegate.swift */,
 				0B1F83D62B99838500CBF4DE /* SceneDelegate.swift */,
 				0B1F83D82B99838500CBF4DE /* ViewController.swift */,
@@ -65,6 +92,67 @@
 				0B1F83E22B99838800CBF4DE /* Info.plist */,
 			);
 			path = BuyingMyHome;
+			sourceTree = "<group>";
+		};
+		0B1F83EC2B99936A00CBF4DE /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				0B1F83ED2B99936F00CBF4DE /* MapView */,
+				0B1F84032B9993DE00CBF4DE /* Base */,
+				0B1F83F92B9993C000CBF4DE /* TabView */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		0B1F83ED2B99936F00CBF4DE /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+				0B1F83F02B99938100CBF4DE /* ViewModel */,
+				0B1F83EF2B99937A00CBF4DE /* ViewController */,
+				0B1F83EE2B99937700CBF4DE /* View */,
+			);
+			path = MapView;
+			sourceTree = "<group>";
+		};
+		0B1F83EE2B99937700CBF4DE /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0B1F83EF2B99937A00CBF4DE /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0B1F84082B99942E00CBF4DE /* MapViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		0B1F83F02B99938100CBF4DE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0B1F83F92B9993C000CBF4DE /* TabView */ = {
+			isa = PBXGroup;
+			children = (
+				0B1F83F82B9993C000CBF4DE /* TabbarViewController.swift */,
+			);
+			path = TabView;
+			sourceTree = "<group>";
+		};
+		0B1F84032B9993DE00CBF4DE /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				0B1F83FF2B9993DE00CBF4DE /* BaseCollectionViewCell.swift */,
+				0B1F84002B9993DE00CBF4DE /* BaseTableViewCell.swift */,
+				0B1F84012B9993DE00CBF4DE /* BaseUIView.swift */,
+				0B1F84022B9993DE00CBF4DE /* BaseViewController.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +171,15 @@
 			dependencies = (
 			);
 			name = BuyingMyHome;
+			packageProductDependencies = (
+				0B1F840B2B99944E00CBF4DE /* SnapKit */,
+				0B1F840E2B99948200CBF4DE /* Realm */,
+				0B1F84102B99948200CBF4DE /* RealmSwift */,
+				0B1F84132B99949200CBF4DE /* Alamofire */,
+				0B1F84162B99949B00CBF4DE /* Toast */,
+				0B1F84192B9994A300CBF4DE /* Kingfisher */,
+				0B1F841C2B9994B300CBF4DE /* TextFieldEffects */,
+			);
 			productName = BuyingMyHome;
 			productReference = 0B1F83D12B99838500CBF4DE /* BuyingMyHome.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +208,14 @@
 				Base,
 			);
 			mainGroup = 0B1F83C82B99838500CBF4DE;
+			packageReferences = (
+				0B1F840A2B99944E00CBF4DE /* XCRemoteSwiftPackageReference "SnapKit" */,
+				0B1F840D2B99948200CBF4DE /* XCRemoteSwiftPackageReference "realm-swift" */,
+				0B1F84122B99949200CBF4DE /* XCRemoteSwiftPackageReference "Alamofire" */,
+				0B1F84152B99949B00CBF4DE /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				0B1F84182B9994A300CBF4DE /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				0B1F841B2B9994B300CBF4DE /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
+			);
 			productRefGroup = 0B1F83D22B99838500CBF4DE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,9 +243,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B1F83FE2B9993C000CBF4DE /* TabbarViewController.swift in Sources */,
 				0B1F83D92B99838500CBF4DE /* ViewController.swift in Sources */,
+				0B1F84042B9993DF00CBF4DE /* BaseCollectionViewCell.swift in Sources */,
 				0B1F83D52B99838500CBF4DE /* AppDelegate.swift in Sources */,
+				0B1F84092B99942E00CBF4DE /* MapViewController.swift in Sources */,
+				0B1F84072B9993DF00CBF4DE /* BaseViewController.swift in Sources */,
 				0B1F83D72B99838500CBF4DE /* SceneDelegate.swift in Sources */,
+				0B1F84062B9993DF00CBF4DE /* BaseUIView.swift in Sources */,
+				0B1F84052B9993DF00CBF4DE /* BaseTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,6 +466,95 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0B1F840A2B99944E00CBF4DE /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		0B1F840D2B99948200CBF4DE /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.47.0;
+			};
+		};
+		0B1F84122B99949200CBF4DE /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.0;
+			};
+		};
+		0B1F84152B99949B00CBF4DE /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
+		0B1F84182B9994A300CBF4DE /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.11.0;
+			};
+		};
+		0B1F841B2B9994B300CBF4DE /* XCRemoteSwiftPackageReference "TextFieldEffects" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/raulriera/TextFieldEffects.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0B1F840B2B99944E00CBF4DE /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0B1F840A2B99944E00CBF4DE /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		0B1F840E2B99948200CBF4DE /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0B1F840D2B99948200CBF4DE /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		0B1F84102B99948200CBF4DE /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0B1F840D2B99948200CBF4DE /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		0B1F84132B99949200CBF4DE /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0B1F84122B99949200CBF4DE /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		0B1F84162B99949B00CBF4DE /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0B1F84152B99949B00CBF4DE /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
+		};
+		0B1F84192B9994A300CBF4DE /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0B1F84182B9994A300CBF4DE /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		0B1F841C2B9994B300CBF4DE /* TextFieldEffects */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0B1F841B2B9994B300CBF4DE /* XCRemoteSwiftPackageReference "TextFieldEffects" */;
+			productName = TextFieldEffects;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0B1F83C92B99838500CBF4DE /* Project object */;
 }
