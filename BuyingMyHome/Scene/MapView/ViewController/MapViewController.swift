@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MapViewController: BaseViewController, UIAdaptivePresentationControllerDelegate {
+class MapViewController: BaseViewController {
 	let mapView = MapView()
 
 	override func loadView() {
@@ -16,59 +16,23 @@ class MapViewController: BaseViewController, UIAdaptivePresentationControllerDel
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		let presentationController = self.presentationController(forPresented: self, source: BottomSheetViewController())
-
+		setSheet()
 	}
 
-}
+	private func setSheet() {
+		let sheetView = UINavigationController(rootViewController: BottomSheetViewController())
+		sheetView.isModalInPresentation = true
+		
 
-class TabSheetPresentationController : UISheetPresentationController {
-	 override func presentationTransitionWillBegin() {
-		  super.presentationTransitionWillBegin()
-
-		  // Update the container frame if there is a tab bar
-		  if let tc = presentingViewController as? UITabBarController, let cv = containerView {
-				cv.clipsToBounds = true // ensure tab bar isn't covered
-				var frame = cv.frame
-				frame.size.height -= tc.tabBar.frame.height
-				cv.frame = frame
-		  }
-	 }
-}
-
-extension MapViewController: UIViewControllerTransitioningDelegate {
-	 func presentationController(forPresented presented: UIViewController, source: UIViewController) -> UIPresentationController? {
-		  let sc = TabSheetPresentationController(presentedViewController: presented, presenting: source)
-		  sc.detents = [
-				.mySmall(),
-				.medium(),
-				.myLarge(),
-		  ]
-		  sc.largestUndimmedDetentIdentifier = .myLarge
-		  sc.prefersGrabberVisible = true
-		  sc.prefersScrollingExpandsWhenScrolledToEdge = false
-		  sc.widthFollowsPreferredContentSizeWhenEdgeAttached = true
-		  sc.selectedDetentIdentifier = .medium
-
-		  return sc
-	 }
-}
-
-extension UISheetPresentationController.Detent.Identifier {
-	 static let mySmall = UISheetPresentationController.Detent.Identifier("mySmall")
-	 static let myLarge = UISheetPresentationController.Detent.Identifier("myLarge")
-}
-
-extension UISheetPresentationController.Detent {
-	 class func mySmall() -> UISheetPresentationController.Detent {
-		  return UISheetPresentationController.Detent.custom(identifier: .mySmall) { context in
-				return 60
-		  }
-	 }
-
-	 class func myLarge() -> UISheetPresentationController.Detent {
-		  return UISheetPresentationController.Detent.custom(identifier: .myLarge) { context in
-				return context.maximumDetentValue - 0.1
-		  }
-	 }
+		if let sheet = sheetView.sheetPresentationController {
+			sheet.prefersGrabberVisible = true
+			sheet.preferredCornerRadius = 30
+			sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = false
+			sheet.detents = [.custom(resolver: { context in
+				0.05 * context.maximumDetentValue
+			}), .medium(), .large()]
+			sheet.largestUndimmedDetentIdentifier = .large
+		}
+		present(sheetView, animated: true)
+	}
 }

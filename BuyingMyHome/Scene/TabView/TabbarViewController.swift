@@ -25,4 +25,6 @@ class TabbarViewController: UITabBarController {
 
 		self.viewControllers = [mapVC, searchVC]
 	}
+
+	
 }
