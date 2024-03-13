@@ -28,6 +28,8 @@
 		0B1F84272B9AEA1F00CBF4DE /* APIkind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1F84262B9AEA1F00CBF4DE /* APIkind.swift */; };
 		0B1F842B2B9BF3A400CBF4DE /* RealEstateProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1F842A2B9BF3A400CBF4DE /* RealEstateProperty.swift */; };
 		0B7EC8B42BA176BA0076F873 /* APIkeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7EC8B32BA176BA0076F873 /* APIkeys.swift */; };
+		0B7EC8B72BA178100076F873 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7EC8B62BA178100076F873 /* MapViewController.swift */; };
+		0B7EC8B92BA178D20076F873 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7EC8B82BA178D20076F873 /* MapView.swift */; };
 		0BCD87BF2B9C36BF0018F06B /* CheckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCD87BE2B9C36BF0018F06B /* CheckList.swift */; };
 		0BCD87C12B9C36D50018F06B /* AroundFacilitie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCD87C02B9C36D50018F06B /* AroundFacilitie.swift */; };
 		0BCD87C32B9C36EC0018F06B /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCD87C22B9C36EC0018F06B /* Folder.swift */; };
@@ -52,6 +54,8 @@
 		0B1F84262B9AEA1F00CBF4DE /* APIkind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIkind.swift; sourceTree = "<group>"; };
 		0B1F842A2B9BF3A400CBF4DE /* RealEstateProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealEstateProperty.swift; sourceTree = "<group>"; };
 		0B7EC8B32BA176BA0076F873 /* APIkeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIkeys.swift; sourceTree = "<group>"; };
+		0B7EC8B62BA178100076F873 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		0B7EC8B82BA178D20076F873 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		0BCD87BE2B9C36BF0018F06B /* CheckList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckList.swift; sourceTree = "<group>"; };
 		0BCD87C02B9C36D50018F06B /* AroundFacilitie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundFacilitie.swift; sourceTree = "<group>"; };
 		0BCD87C22B9C36EC0018F06B /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
@@ -128,6 +132,7 @@
 		0B1F83ED2B99936F00CBF4DE /* MapView */ = {
 			isa = PBXGroup;
 			children = (
+				0B7EC8B52BA178050076F873 /* ViewModel */,
 				0B1F83EF2B99937A00CBF4DE /* ViewController */,
 				0B1F83EE2B99937700CBF4DE /* View */,
 			);
@@ -137,6 +142,7 @@
 		0B1F83EE2B99937700CBF4DE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0B7EC8B82BA178D20076F873 /* MapView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -144,6 +150,7 @@
 		0B1F83EF2B99937A00CBF4DE /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				0B7EC8B62BA178100076F873 /* MapViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -202,6 +209,13 @@
 				0BCD87C22B9C36EC0018F06B /* Folder.swift */,
 			);
 			path = Realm;
+			sourceTree = "<group>";
+		};
+		0B7EC8B52BA178050076F873 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		0BDE7FFA2B9F3C26006E7DFE /* DaumZipCodeView */ = {
@@ -386,12 +400,14 @@
 				0B1F84272B9AEA1F00CBF4DE /* APIkind.swift in Sources */,
 				0BDE7FFE2B9F3C41006E7DFE /* DaumZipCodeViewController.swift in Sources */,
 				0B1F842B2B9BF3A400CBF4DE /* RealEstateProperty.swift in Sources */,
+				0B7EC8B92BA178D20076F873 /* MapView.swift in Sources */,
 				0B1F84252B9AEA1200CBF4DE /* RequestManager.swift in Sources */,
 				0B1F84072B9993DF00CBF4DE /* BaseViewController.swift in Sources */,
 				0BCD87C32B9C36EC0018F06B /* Folder.swift in Sources */,
 				0B1F83D72B99838500CBF4DE /* SceneDelegate.swift in Sources */,
 				0B1F84062B9993DF00CBF4DE /* BaseUIView.swift in Sources */,
 				0B1F84052B9993DF00CBF4DE /* BaseTableViewCell.swift in Sources */,
+				0B7EC8B72BA178100076F873 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
