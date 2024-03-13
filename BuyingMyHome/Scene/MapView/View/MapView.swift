@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import NMapsMap
 
-class MapView: BaseUIView {
+final class MapView: BaseUIView {
 	let naverMap = NMFNaverMapView(frame: .zero)
 
 	override func configureHierarchy() {
@@ -25,6 +25,5 @@ class MapView: BaseUIView {
 	override func configureView() {
 		naverMap.showCompass = true
 		naverMap.showScaleBar = true
-		
 	}
 }

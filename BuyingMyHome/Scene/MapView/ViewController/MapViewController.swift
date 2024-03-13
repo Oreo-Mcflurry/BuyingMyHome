@@ -9,22 +9,28 @@ import UIKit
 import NMapsMap
 import SnapKit
 
-class MapViewController: BaseViewController {
+final class MapViewController: BaseViewController {
+	let viewModel = MapViewModel()
 	let mapView = MapView()
 
 	override func loadView() {
 		self.view = mapView
-		mapView.naverMap.mapView.touchDelegate = self
 	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		setMapView()
 	}
 }
 
 
 extension MapViewController: NMFMapViewTouchDelegate {
+
+	private func setMapView() {
+		mapView.naverMap.mapView.touchDelegate = self
+	}
+
 	func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
-		print(latlng)
+		viewModel.tapMapMakeMarker(mapView, latlng: latlng)
 	}
 }
