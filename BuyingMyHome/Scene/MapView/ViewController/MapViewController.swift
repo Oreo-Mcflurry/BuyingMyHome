@@ -33,4 +33,9 @@ extension MapViewController: NMFMapViewTouchDelegate {
 	func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
 		viewModel.tapMapMakeMarker(mapView, latlng: latlng)
 	}
+
+	func mapView(_ mapView: NMFMapView, didTap symbol: NMFSymbol) -> Bool {
+		viewModel.tapSymbol(mapView, didTap: symbol)
+		return true
+	}
 }
