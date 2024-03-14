@@ -9,6 +9,10 @@ import UIKit
 
 class BaseUIView: UIView {
 
+	let verticalPadding: CGFloat = 40
+	let betweenPadding: CGFloat = 10
+	let defautPadding: CGFloat = 20
+
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		configureHierarchy()

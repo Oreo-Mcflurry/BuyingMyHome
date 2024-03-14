@@ -10,29 +10,36 @@ import NMapsMap
 import MapKit
 
 final class MapViewModel {
+	let tapMapOutPut: Observable<(symbol: String, address: String)> = Observable(("", ""))
 	private let tabMapMarker = NMFMarker()
 
-
-	func tapMapMakeMarker(_ mapView: NMFMapView, latlng: NMGLatLng) {
-		tabMapMarker.mapView = nil
-		tabMapMarker.position = NMGLatLng(lat: latlng.lat, lng: latlng.lng)
-		tabMapMarker.mapView = mapView
-		convertLatLngToAddress(latlng: latlng)
+	func tapMap(_ mapView: NMFMapView, latlng: NMGLatLng) {
+		tapMapMakeMarker(mapView, latlng: latlng) { [weak self] address in
+			self?.tapMapOutPut.value = ("", address)
+		}
 	}
 
 	func tapSymbol(_ mapView: NMFMapView, didTap symbol: NMFSymbol) {
-		print(symbol.caption)
-		tapMapMakeMarker(mapView, latlng: symbol.position)
-		convertLatLngToAddress(latlng: symbol.position)
+		tapMapMakeMarker(mapView, latlng: symbol.position) { [weak self] address in
+			if Int(symbol.caption) != nil {
+				self?.tapMapOutPut.value = ("", address)
+			} else {
+				self?.tapMapOutPut.value = (symbol.caption, address)
+			}
+		}
 	}
 
-	private func convertLatLngToAddress(latlng: NMGLatLng) {
-		let geocoder = CLGeocoder()
+	private func tapMapMakeMarker(_ mapView: NMFMapView, latlng: NMGLatLng, _ completionHandler: @escaping ((String)->Void)) {
+		tabMapMarker.mapView = nil
+		tabMapMarker.position = NMGLatLng(lat: latlng.lat, lng: latlng.lng)
+		tabMapMarker.mapView = mapView
 
+
+		let geocoder = CLGeocoder()
 		geocoder.reverseGeocodeLocation(CLLocation(latitude: latlng.lat, longitude: latlng.lng)) { placemark, error in
 			if error != nil { return }
 			guard let place = placemark?.first else { return }
-			print("\(place.country ?? "") \(place.locality ?? "") \(place.name ?? "")")
+			completionHandler("\(place.locality ?? "") \(place.name ?? "")")
 		}
 	}
 }

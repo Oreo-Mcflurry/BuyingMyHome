@@ -21,8 +21,15 @@ final class MapViewController: BaseViewController {
 		super.viewDidLoad()
 		setMapView()
 	}
-}
 
+	override func configureBinding() {
+		viewModel.tapMapOutPut.bind { [weak self] result in
+			print(result)
+			self?.mapView.configureUI(result)
+			self?.mapView.isInfoViewAppear(true)
+		}
+	}
+}
 
 extension MapViewController: NMFMapViewTouchDelegate {
 
@@ -31,7 +38,7 @@ extension MapViewController: NMFMapViewTouchDelegate {
 	}
 
 	func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
-		viewModel.tapMapMakeMarker(mapView, latlng: latlng)
+		viewModel.tapMap(mapView, latlng: latlng)
 	}
 
 	func mapView(_ mapView: NMFMapView, didTap symbol: NMFSymbol) -> Bool {
