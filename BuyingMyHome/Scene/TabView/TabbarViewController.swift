@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 final class TabbarViewController: UITabBarController {
 
@@ -19,6 +20,9 @@ final class TabbarViewController: UITabBarController {
 		let mapVC = UINavigationController(rootViewController: MapViewController())
 		mapVC.tabBarItem = UITabBarItem(title: "Main", image: UIImage(systemName: "star"), tag: 0)
 
+		let settingVC = UINavigationController(rootViewController: UIHostingController(rootView: SettingView()))
+		settingVC.tabBarItem = UITabBarItem(title: "Setting", image: UIImage(systemName: "star"), tag: 1)
+
 
 //		let searchVC = UINavigationController(rootViewController: DaumZipCodeViewController())
 //		searchVC.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "star"), tag: 1)
@@ -29,7 +33,7 @@ final class TabbarViewController: UITabBarController {
 //		let profileVC = UINavigationController(rootViewController: ProfileViewController())
 //		profileVC.tabBarItem = UITabBarItem(title: nil, image: .tabUserInactive, selectedImage: .tabUser)
 
-		self.viewControllers = [mapVC]
+		self.viewControllers = [mapVC, settingVC]
 	}
 
 	private func configureTabbarDesign() {
