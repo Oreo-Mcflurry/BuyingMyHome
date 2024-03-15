@@ -12,14 +12,20 @@ final class MapTapInfoView: BaseUIView {
 	let symbolLabel = UILabel()
 	let addressLabel = UILabel()
 	let addButton = UIButton(configuration: .filled())
+	let cancelButton = UIButton()
 
 	override func configureHierarchy() {
-		[symbolLabel, addressLabel, addButton].forEach { addSubview($0) }
+		[symbolLabel, cancelButton, addressLabel, addButton].forEach { addSubview($0) }
 	}
 
 	override func configureLayout() {
 		addressLabel.snp.makeConstraints {
-			$0.top.horizontalEdges.equalTo(self).inset(defautPadding)
+			$0.top.leading.equalTo(self).inset(defautPadding)
+		}
+
+		cancelButton.snp.makeConstraints {
+			$0.top.trailing.equalTo(self).inset(defautPadding)
+			$0.leading.equalTo(addressLabel.snp.trailing).offset(defautPadding)
 		}
 
 		symbolLabel.snp.makeConstraints {
@@ -44,10 +50,12 @@ final class MapTapInfoView: BaseUIView {
 		self.layer.cornerRadius = 10
 
 		addButton.setTitle("추가하기", for: .normal)
-		addButton.setTitleColor(.black, for: .normal)
-		addButton.tintColor = .lightGray
+		addButton.setTitleColor(.white, for: .normal)
+		addButton.tintColor = .accent
 		addButton.clipsToBounds = true
 		addButton.layer.cornerRadius = 10
+
+		cancelButton.setImage(UIImage(systemName: "xmark")?.withTintColor(.accent), for: .normal)
 
 		symbolLabel.textColor = .darkGray
 		addressLabel.textColor = .black

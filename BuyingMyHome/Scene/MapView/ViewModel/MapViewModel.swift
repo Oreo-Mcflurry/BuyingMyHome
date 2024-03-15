@@ -11,7 +11,18 @@ import MapKit
 
 final class MapViewModel {
 	let tapMapOutPut: Observable<(symbol: String, address: String)> = Observable(("", ""))
+
+	let cancelButtonInput: Observable<Void?> = Observable(nil)
+	let cancelButtonOutput: Observable<Void?> = Observable(nil)
+
 	private let tabMapMarker = NMFMarker()
+
+	init() {
+		cancelButtonInput.bind { [weak self] _ in
+			self?.deleteMarker()
+			self?.cancelButtonOutput.value = ()
+		}
+	}
 
 	func tapMap(_ mapView: NMFMapView, latlng: NMGLatLng) {
 		tapMapMakeMarker(mapView, latlng: latlng) { [weak self] address in
@@ -30,7 +41,7 @@ final class MapViewModel {
 	}
 
 	private func tapMapMakeMarker(_ mapView: NMFMapView, latlng: NMGLatLng, _ completionHandler: @escaping ((String)->Void)) {
-		tabMapMarker.mapView = nil
+		deleteMarker()
 		tabMapMarker.position = NMGLatLng(lat: latlng.lat, lng: latlng.lng)
 		tabMapMarker.mapView = mapView
 
@@ -41,5 +52,9 @@ final class MapViewModel {
 			guard let place = placemark?.first else { return }
 			completionHandler("\(place.locality ?? "") \(place.name ?? "")")
 		}
+	}
+
+	private func deleteMarker() {
+		tabMapMarker.mapView = nil
 	}
 }

@@ -11,7 +11,7 @@ import NMapsMap
 
 final class MapView: BaseUIView {
 	let naverMap = NMFNaverMapView(frame: .zero)
-	private let infoView = MapTapInfoView()
+	let infoView = MapTapInfoView()
 	let searchButton = UIButton(configuration: .filled())
 
 	override func configureHierarchy() {
@@ -24,13 +24,15 @@ final class MapView: BaseUIView {
 		}
 
 		searchButton.snp.makeConstraints {
-			$0.top.trailing.equalTo(self.safeAreaLayoutGuide).inset(defautPadding)
+			$0.top.trailing.equalTo(self.safeAreaLayoutGuide).offset(-defautPadding)
+			$0.size.equalTo(40)
 		}
 	}
 
 	override func configureView() {
 		naverMap.showCompass = true
 		naverMap.showScaleBar = true
+		searchButton.setImage(UIImage(systemName: "magnifyingglass")?.withTintColor(.black), for: .normal)
 	}
 
 	func isInfoViewAppear(_ value: Bool) {

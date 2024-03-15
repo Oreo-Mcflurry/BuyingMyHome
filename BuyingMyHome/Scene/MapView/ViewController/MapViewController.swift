@@ -22,12 +22,23 @@ final class MapViewController: BaseViewController {
 		setMapView()
 	}
 
+	override func configureView() {
+		mapView.infoView.cancelButton.addTarget(self, action: #selector(tapCancelButton), for: .touchUpInside)
+	}
+
 	override func configureBinding() {
 		viewModel.tapMapOutPut.bind { [weak self] result in
-			print(result)
 			self?.mapView.configureUI(result)
 			self?.mapView.isInfoViewAppear(true)
 		}
+
+		viewModel.cancelButtonOutput.bind { [weak self] _ in
+			self?.mapView.isInfoViewAppear(false)
+		}
+	}
+
+	@objc private func tapCancelButton() {
+		viewModel.cancelButtonInput.value = ()
 	}
 }
 
