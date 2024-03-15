@@ -24,6 +24,8 @@ final class MapViewController: BaseViewController {
 
 	override func configureView() {
 		mapView.infoView.cancelButton.addTarget(self, action: #selector(tapCancelButton), for: .touchUpInside)
+		mapView.searchButton.addTarget(self, action: #selector(tapSearchButton), for: .touchUpInside
+		)
 	}
 
 	override func configureBinding() {
@@ -35,10 +37,19 @@ final class MapViewController: BaseViewController {
 		viewModel.cancelButtonOutput.bind { [weak self] _ in
 			self?.mapView.isInfoViewAppear(false)
 		}
+
+		viewModel.searchButtonOutput.bind { [weak self] _ in
+			let vc = SearchViewController()
+			self?.navigationController?.pushViewController(vc, animated: true)
+		}
 	}
 
 	@objc private func tapCancelButton() {
 		viewModel.cancelButtonInput.value = ()
+	}
+
+	@objc private func tapSearchButton() {
+		viewModel.searchButtonInput.value = ()
 	}
 }
 

@@ -15,12 +15,19 @@ final class MapViewModel {
 	let cancelButtonInput: Observable<Void?> = Observable(nil)
 	let cancelButtonOutput: Observable<Void?> = Observable(nil)
 
+	let searchButtonInput: Observable<Void?> = Observable(nil)
+	let searchButtonOutput: Observable<Void?> = Observable(nil)
+
 	private let tabMapMarker = NMFMarker()
 
 	init() {
 		cancelButtonInput.bind { [weak self] _ in
 			self?.deleteMarker()
 			self?.cancelButtonOutput.value = ()
+		}
+
+		searchButtonInput.bind { [weak self] _ in
+			self?.searchButtonOutput.value = ()
 		}
 	}
 

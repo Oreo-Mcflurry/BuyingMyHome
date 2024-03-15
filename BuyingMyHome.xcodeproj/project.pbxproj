@@ -33,10 +33,15 @@
 		0B7EC8BB2BA1814A0076F873 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7EC8BA2BA1814A0076F873 /* MapViewModel.swift */; };
 		0B7EC8BE2BA181D40076F873 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7EC8BC2BA181D40076F873 /* Observable.swift */; };
 		0B7EC8C32BA2BBB70076F873 /* MapTapInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7EC8C22BA2BBB70076F873 /* MapTapInfoView.swift */; };
+		0B7EC8CE2BA40D150076F873 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7EC8CD2BA40D150076F873 /* SearchViewController.swift */; };
+		0B7EC8D02BA40D460076F873 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7EC8CF2BA40D460076F873 /* SearchView.swift */; };
+		0B7EC8D32BA4115B0076F873 /* DeleteBackButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7EC8D22BA4115B0076F873 /* DeleteBackButton+Extension.swift */; };
+		0B7EC8D52BA414040076F873 /* SearchResultViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7EC8D42BA414040076F873 /* SearchResultViewContoller.swift */; };
+		0B7EC8D82BA4152F0076F873 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7EC8D72BA4152F0076F873 /* SettingView.swift */; };
+		0B7EC8DA2BA4169B0076F873 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7EC8D92BA4169B0076F873 /* SearchViewModel.swift */; };
 		0BCD87BF2B9C36BF0018F06B /* CheckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCD87BE2B9C36BF0018F06B /* CheckList.swift */; };
 		0BCD87C12B9C36D50018F06B /* AroundFacilitie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCD87C02B9C36D50018F06B /* AroundFacilitie.swift */; };
 		0BCD87C32B9C36EC0018F06B /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCD87C22B9C36EC0018F06B /* Folder.swift */; };
-		0BDE7FFE2B9F3C41006E7DFE /* DaumZipCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDE7FFD2B9F3C41006E7DFE /* DaumZipCodeViewController.swift */; };
 		1D5E1270A0ABDD760C1A7D18 /* Pods_BuyingMyHome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F06748343C356730A920C69 /* Pods_BuyingMyHome.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,10 +67,15 @@
 		0B7EC8BA2BA1814A0076F873 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		0B7EC8BC2BA181D40076F873 /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		0B7EC8C22BA2BBB70076F873 /* MapTapInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTapInfoView.swift; sourceTree = "<group>"; };
+		0B7EC8CD2BA40D150076F873 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		0B7EC8CF2BA40D460076F873 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		0B7EC8D22BA4115B0076F873 /* DeleteBackButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeleteBackButton+Extension.swift"; sourceTree = "<group>"; };
+		0B7EC8D42BA414040076F873 /* SearchResultViewContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewContoller.swift; sourceTree = "<group>"; };
+		0B7EC8D72BA4152F0076F873 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		0B7EC8D92BA4169B0076F873 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		0BCD87BE2B9C36BF0018F06B /* CheckList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckList.swift; sourceTree = "<group>"; };
 		0BCD87C02B9C36D50018F06B /* AroundFacilitie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundFacilitie.swift; sourceTree = "<group>"; };
 		0BCD87C22B9C36EC0018F06B /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
-		0BDE7FFD2B9F3C41006E7DFE /* DaumZipCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaumZipCodeViewController.swift; sourceTree = "<group>"; };
 		0F06748343C356730A920C69 /* Pods_BuyingMyHome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BuyingMyHome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		19ABA9AD7E594DEC066D4D13 /* Pods-BuyingMyHome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuyingMyHome.release.xcconfig"; path = "Target Support Files/Pods-BuyingMyHome/Pods-BuyingMyHome.release.xcconfig"; sourceTree = "<group>"; };
 		B08E652CE83D145625B1B28A /* Pods-BuyingMyHome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuyingMyHome.debug.xcconfig"; path = "Target Support Files/Pods-BuyingMyHome/Pods-BuyingMyHome.debug.xcconfig"; sourceTree = "<group>"; };
@@ -112,6 +122,7 @@
 		0B1F83D32B99838500CBF4DE /* BuyingMyHome */ = {
 			isa = PBXGroup;
 			children = (
+				0B7EC8D12BA411400076F873 /* Extension */,
 				0B1F84232B9AE9EC00CBF4DE /* Model */,
 				0B1F84202B9AE9DF00CBF4DE /* Service */,
 				0B1F83EC2B99936A00CBF4DE /* Scene */,
@@ -127,7 +138,8 @@
 		0B1F83EC2B99936A00CBF4DE /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				0BDE7FFA2B9F3C26006E7DFE /* DaumZipCodeView */,
+				0B7EC8D62BA415200076F873 /* SettingView */,
+				0B7EC8C82BA40CEA0076F873 /* SearchView */,
 				0B1F83ED2B99936F00CBF4DE /* MapView */,
 				0B1F84032B9993DE00CBF4DE /* Base */,
 				0B1F83F92B9993C000CBF4DE /* TabView */,
@@ -235,28 +247,55 @@
 			path = Observable;
 			sourceTree = "<group>";
 		};
-		0BDE7FFA2B9F3C26006E7DFE /* DaumZipCodeView */ = {
+		0B7EC8C82BA40CEA0076F873 /* SearchView */ = {
 			isa = PBXGroup;
 			children = (
-				0BDE7FFC2B9F3C33006E7DFE /* ViewController */,
-				0BDE7FFB2B9F3C31006E7DFE /* View */,
+				0B7EC8CB2BA40D030076F873 /* ViewController */,
+				0B7EC8CA2BA40CFE0076F873 /* ViewModel */,
+				0B7EC8C92BA40CFA0076F873 /* View */,
 			);
-			path = DaumZipCodeView;
+			path = SearchView;
 			sourceTree = "<group>";
 		};
-		0BDE7FFB2B9F3C31006E7DFE /* View */ = {
+		0B7EC8C92BA40CFA0076F873 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0B7EC8CF2BA40D460076F873 /* SearchView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		0BDE7FFC2B9F3C33006E7DFE /* ViewController */ = {
+		0B7EC8CA2BA40CFE0076F873 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				0BDE7FFD2B9F3C41006E7DFE /* DaumZipCodeViewController.swift */,
+				0B7EC8D92BA4169B0076F873 /* SearchViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0B7EC8CB2BA40D030076F873 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0B7EC8CD2BA40D150076F873 /* SearchViewController.swift */,
+				0B7EC8D42BA414040076F873 /* SearchResultViewContoller.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		0B7EC8D12BA411400076F873 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				0B7EC8D22BA4115B0076F873 /* DeleteBackButton+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		0B7EC8D62BA415200076F873 /* SettingView */ = {
+			isa = PBXGroup;
+			children = (
+				0B7EC8D72BA4152F0076F873 /* SettingView.swift */,
+			);
+			path = SettingView;
 			sourceTree = "<group>";
 		};
 		A963362B8451B0179290BFF4 /* Frameworks */ = {
@@ -416,9 +455,12 @@
 				0B1F83D52B99838500CBF4DE /* AppDelegate.swift in Sources */,
 				0BCD87C12B9C36D50018F06B /* AroundFacilitie.swift in Sources */,
 				0B1F84272B9AEA1F00CBF4DE /* APIkind.swift in Sources */,
+				0B7EC8D52BA414040076F873 /* SearchResultViewContoller.swift in Sources */,
 				0B7EC8C32BA2BBB70076F873 /* MapTapInfoView.swift in Sources */,
-				0BDE7FFE2B9F3C41006E7DFE /* DaumZipCodeViewController.swift in Sources */,
 				0B1F842B2B9BF3A400CBF4DE /* RealEstateProperty.swift in Sources */,
+				0B7EC8D02BA40D460076F873 /* SearchView.swift in Sources */,
+				0B7EC8CE2BA40D150076F873 /* SearchViewController.swift in Sources */,
+				0B7EC8D32BA4115B0076F873 /* DeleteBackButton+Extension.swift in Sources */,
 				0B7EC8B92BA178D20076F873 /* MapView.swift in Sources */,
 				0B1F84252B9AEA1200CBF4DE /* RequestManager.swift in Sources */,
 				0B1F84072B9993DF00CBF4DE /* BaseViewController.swift in Sources */,
@@ -426,6 +468,8 @@
 				0B1F83D72B99838500CBF4DE /* SceneDelegate.swift in Sources */,
 				0B1F84062B9993DF00CBF4DE /* BaseUIView.swift in Sources */,
 				0B1F84052B9993DF00CBF4DE /* BaseTableViewCell.swift in Sources */,
+				0B7EC8DA2BA4169B0076F873 /* SearchViewModel.swift in Sources */,
+				0B7EC8D82BA4152F0076F873 /* SettingView.swift in Sources */,
 				0B7EC8B72BA178100076F873 /* MapViewController.swift in Sources */,
 				0B7EC8BB2BA1814A0076F873 /* MapViewModel.swift in Sources */,
 			);
