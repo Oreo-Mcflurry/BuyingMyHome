@@ -40,7 +40,20 @@ final class MapViewController: BaseViewController {
 
 		viewModel.searchButtonOutput.bind { [weak self] _ in
 			let vc = SearchViewController()
+			vc.completionHandler = { value in
+				self?.viewModel.searchResultInput.value = value
+			}
 			self?.navigationController?.pushViewController(vc, animated: true)
+		}
+
+		viewModel.searchResultOutput.bind { [weak self] value in
+			guard let value else { return }
+			let latlng = NMGLatLng(lat: value.lat, lng: value.lng)
+
+			self?.mapView.configureUI((value.addressName, value.placeName))
+			self?.viewModel.searchMarker(self!.mapView.naverMap.mapView, latlng: latlng)
+			self?.self.mapView.naverMap.mapView.moveCamera(NMFCameraUpdate(scrollTo: latlng))
+			self?.mapView.isInfoViewAppear(true)
 		}
 	}
 

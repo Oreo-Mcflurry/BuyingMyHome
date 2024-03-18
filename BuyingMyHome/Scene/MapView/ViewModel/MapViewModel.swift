@@ -18,6 +18,9 @@ final class MapViewModel {
 	let searchButtonInput: Observable<Void?> = Observable(nil)
 	let searchButtonOutput: Observable<Void?> = Observable(nil)
 
+	let searchResultInput: Observable<KakaoSearchResult?> = Observable(nil)
+	let searchResultOutput: Observable<KakaoSearchResult?> = Observable(nil)
+
 	private let tabMapMarker = NMFMarker()
 
 	init() {
@@ -28,6 +31,10 @@ final class MapViewModel {
 
 		searchButtonInput.bind { [weak self] _ in
 			self?.searchButtonOutput.value = ()
+		}
+
+		searchResultInput.bind { [weak self] value in
+			self?.searchResultOutput.value = value
 		}
 	}
 
@@ -47,10 +54,14 @@ final class MapViewModel {
 		}
 	}
 
+	func searchMarker(_ mapView: NMFMapView, latlng: NMGLatLng) {
+		deleteMarker()
+		makeMarker(mapView, latlng: latlng)
+	}
+
 	private func tapMapMakeMarker(_ mapView: NMFMapView, latlng: NMGLatLng, _ completionHandler: @escaping ((String)->Void)) {
 		deleteMarker()
-		tabMapMarker.position = NMGLatLng(lat: latlng.lat, lng: latlng.lng)
-		tabMapMarker.mapView = mapView
+		makeMarker(mapView, latlng: latlng)
 
 
 		let geocoder = CLGeocoder()
@@ -63,5 +74,12 @@ final class MapViewModel {
 
 	private func deleteMarker() {
 		tabMapMarker.mapView = nil
+	}
+
+	private func makeMarker(_ mapView: NMFMapView, latlng: NMGLatLng) {
+		DispatchQueue.main.async { [weak self] in
+			self?.tabMapMarker.position = NMGLatLng(lat: latlng.lat, lng: latlng.lng)
+			self?.tabMapMarker.mapView = mapView
+		}
 	}
 }
