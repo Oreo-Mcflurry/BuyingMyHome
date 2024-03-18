@@ -8,6 +8,11 @@
 import UIKit
 
 class BaseTableViewCell: UITableViewCell {
+
+	let verticalPadding: CGFloat = 40
+	let betweenPadding: CGFloat = 10
+	let defautPadding: CGFloat = 20
+
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 		configureHierarchy()

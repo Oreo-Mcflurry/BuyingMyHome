@@ -7,10 +7,11 @@
 
 import UIKit
 
-class SearchViewController: BaseViewController {
+final class SearchViewController: BaseViewController {
 
 	let searchView = SearchView()
 	let viewModel = SearchViewModel()
+	var completionHandler: ((KakaoSearchResult)->Void)?
 
 	override func loadView() {
 		self.view = searchView
@@ -18,6 +19,129 @@ class SearchViewController: BaseViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.navigationItem.searchController = searchView.searchController
+		self.navigationItem.title = "검색"
+		setTableView()
+		setSearchController()
+		setSeachbar()
+	}
+
+	override func configureBinding() {
+		viewModel.didSelectOutput.bind { [weak self] value in
+			guard let value else { return }
+			self?.completionHandler?(value)
+			self?.navigationController?.popViewController(animated: true)
+		}
+
+		viewModel.searchControllerPresentOutput.bind { [weak self] value in
+			self?.searchView.searchAndHistoryTableView.reloadData()
+		}
+
+		viewModel.searchOutput.bind { [weak self] value in
+			if value.1 != nil {
+				self?.showToast(.searchError)
+			} else if value.0 != nil {
+				self?.searchView.searchAndHistoryTableView.reloadData()
+			}
+		}
+
+		viewModel.pagingOutput.bind { [weak self] _ in
+			self?.searchView.searchAndHistoryTableView.reloadData()
+		}
+
+		viewModel.didChangeOutput.bind { [weak self] _ in
+			self?.searchView.searchAndHistoryTableView.reloadData()
+		}
+	}
+}
+
+extension SearchViewController: UISearchBarDelegate {
+	private func setSeachbar() {
+		searchView.searchController.searchBar.delegate = self
+	}
+
+	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+		viewModel.searchInput.value = searchBar.text
+	}
+
+	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+		viewModel.didChangeInput.value = ()
+	}
+}
+
+extension SearchViewController: UISearchControllerDelegate {
+	private func setSearchController() {
+		searchView.searchController.delegate = self
+	}
+
+	func presentSearchController(_ searchController: UISearchController) {
+		viewModel.searchControllerPresentInput.value = .present
+	}
+
+	func didDismissSearchController(_ searchController: UISearchController) {
+		viewModel.searchControllerPresentInput.value = .dismiss
+	}
+}
+
+extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
+
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+		switch viewModel.isPresentSearchController {
+		case .present:
+			viewModel.didSelectInput.value = viewModel.searchOutput.value.0!.documents[indexPath.row]
+		case .dismiss: 
+			viewModel.didSelectInput.value = KakaoSearchResult(from: viewModel.searchHistory[indexPath.row])
+		}
+		
+		searchView.searchController.isActive = false
+		navigationController?.popViewController(animated: true)
+	}
+
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return viewModel.numberOfRowsInSection
+	}
+	
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+		switch viewModel.isPresentSearchController {
+		case .present:
+			let cell = UITableViewCell()
+			cell.contentConfiguration = configureCell(withData: viewModel.searchOutput.value.0?.documents[indexPath.row], cell)
+			return cell
+
+		case .dismiss:
+			let cell = tableView.dequeueReusableCell(withIdentifier: SearchHistoryTableViewCell.description(), for: indexPath) as! SearchHistoryTableViewCell
+			cell.configurationCell(viewModel.searchHistory[indexPath.row])
+			cell.deleteButton.addTarget(self, action: #selector(deleteButtonCliced), for: .touchUpInside)
+			return cell
+		}
+	}
+
+	@objc func deleteButtonCliced() {
+
+	}
+
+	private func setTableView() {
+		searchView.searchAndHistoryTableView.delegate = self
+		searchView.searchAndHistoryTableView.dataSource = self
+		searchView.searchAndHistoryTableView.prefetchDataSource = self
+		searchView.searchAndHistoryTableView.register(SearchHistoryTableViewCell.self, forCellReuseIdentifier: SearchHistoryTableViewCell.description())
+	}
+
+	private func configureCell(withData data: KakaoSearchResult?,_ cell: UITableViewCell) -> UIContentConfiguration {
+		var content = cell.defaultContentConfiguration()
+		guard let data else { return content }
+
+		content.text = data.placeName
+		content.secondaryText = data.roadAddressName
+		return content
+	}
+}
+
+extension SearchViewController: UITableViewDataSourcePrefetching {
+	func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+		if let count = viewModel.searchOutput.value.0?.documents.count, indexPaths.contains(where: { $0.row == count-1 }) {
+			viewModel.pagingInput.value = searchView.searchController.searchBar.text
+		}
 	}
 }
