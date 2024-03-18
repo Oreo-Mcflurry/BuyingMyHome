@@ -9,19 +9,19 @@ import Foundation
 import Alamofire
 
 final class RequestManager {
-	enum APIError {
-		case decodingError
+	enum APIError: Error {
+		case error
 	}
 
 	func request<T: Decodable>(_ api: APIkind, _ type: T.Type, completionHandler: @escaping (T?, APIError?)->()) {
-		AF.request(api.getURL).responseDecodable(of: T.self) { response in
-
+		AF.request(api.getURL, parameters: api.parameter, headers: api.header).responseDecodable(of: T.self) { response in
+//			debugPrint(response)
 			switch response.result {
 			case .success(let success):
 				completionHandler(success, nil)
 				return
 			case .failure(_):
-				completionHandler(nil, .decodingError)
+				completionHandler(nil, .error)
 			}
 		}
 	}

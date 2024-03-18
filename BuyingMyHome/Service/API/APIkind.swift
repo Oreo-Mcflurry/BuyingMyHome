@@ -6,25 +6,38 @@
 //
 
 import Foundation
+import Alamofire
 
 enum APIkind {
-	case test
-
-	var type: Decodable.Type {
-		switch self {
-		case .test:
-		 return Test.self
-		}
-	}
+	case kakaoSearch(searchText: String, page: Int, placeType: [PlaceType]? = nil)
 
 	var getURL: URL {
 		switch self {
-		case .test:
-			return URL(string: "")!
+		case .kakaoSearch:
+			return URL(string: "https://dapi.kakao.com/v2/local/search/keyword.json")!
 		}
 	}
-}
 
-struct Test: Decodable {
-	let name: String
+	var method: HTTPMethod {
+		return .get
+	}
+
+	var header: HTTPHeaders {
+		switch self {
+		case .kakaoSearch:
+			return ["Authorization": APIkeys.kakaoSecreat.rawValue]
+		}
+	}
+
+	var parameter: Parameters {
+		switch self {
+		case .kakaoSearch(let searchText, let page, let placeType):
+			if let placeType {
+				let placeString = placeType.map { $0.rawValue }.joined(separator: ",")
+				return ["query": searchText, "category_group_code": placeString, "page": "\(page)"]
+			} else {
+				return ["query": searchText, "page": "\(page)"]
+			}
+		}
+	}
 }
