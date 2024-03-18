@@ -7,6 +7,7 @@
 
 import UIKit
 import NMapsMap
+import FirebaseCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
 		NMFAuthManager.shared().clientId = APIkeys.naverMapClient.rawValue
+		FirebaseApp.configure()
 		return true
 	}
 
