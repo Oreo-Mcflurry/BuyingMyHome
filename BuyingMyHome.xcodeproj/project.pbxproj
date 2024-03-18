@@ -161,24 +161,24 @@
 		0B1F83EC2B99936A00CBF4DE /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				0B7EC8D62BA415200076F873 /* SettingView */,
-				0B7EC8C82BA40CEA0076F873 /* SearchView */,
-				0B7EC8C92BA40CFA0076F873 /* View */,
-				0B1F83ED2B99936F00CBF4DE /* MapView */,
+				0BA76E512BA8070500798E44 /* AddScene */,
+				0B7EC8D62BA415200076F873 /* SettingScene */,
+				0B7EC8C82BA40CEA0076F873 /* SearchScene */,
+				0B1F83ED2B99936F00CBF4DE /* MapScene */,
 				0B1F84032B9993DE00CBF4DE /* Base */,
-				0B1F83F92B9993C000CBF4DE /* TabView */,
+				0B1F83F92B9993C000CBF4DE /* TabScene */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
 		};
-		0B1F83ED2B99936F00CBF4DE /* MapView */ = {
+		0B1F83ED2B99936F00CBF4DE /* MapScene */ = {
 			isa = PBXGroup;
 			children = (
 				0B7EC8B52BA178050076F873 /* ViewModel */,
 				0B1F83EF2B99937A00CBF4DE /* ViewController */,
 				0B1F83EE2B99937700CBF4DE /* View */,
 			);
-			path = MapView;
+			path = MapScene;
 			sourceTree = "<group>";
 		};
 		0B1F83EE2B99937700CBF4DE /* View */ = {
@@ -198,12 +198,12 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		0B1F83F92B9993C000CBF4DE /* TabView */ = {
+		0B1F83F92B9993C000CBF4DE /* TabScene */ = {
 			isa = PBXGroup;
 			children = (
 				0B1F83F82B9993C000CBF4DE /* TabbarViewController.swift */,
 			);
-			path = TabView;
+			path = TabScene;
 			sourceTree = "<group>";
 		};
 		0B1F84032B9993DE00CBF4DE /* Base */ = {
@@ -274,14 +274,15 @@
 			path = Observable;
 			sourceTree = "<group>";
 		};
-		0B7EC8C82BA40CEA0076F873 /* SearchView */ = {
+		0B7EC8C82BA40CEA0076F873 /* SearchScene */ = {
 			isa = PBXGroup;
 			children = (
+				0B7EC8C92BA40CFA0076F873 /* View */,
 				0B7EC8DE2BA55AD70076F873 /* Cell */,
 				0B7EC8CB2BA40D030076F873 /* ViewController */,
 				0B7EC8CA2BA40CFE0076F873 /* ViewModel */,
 			);
-			path = SearchView;
+			path = SearchScene;
 			sourceTree = "<group>";
 		};
 		0B7EC8C92BA40CFA0076F873 /* View */ = {
@@ -317,12 +318,12 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		0B7EC8D62BA415200076F873 /* SettingView */ = {
+		0B7EC8D62BA415200076F873 /* SettingScene */ = {
 			isa = PBXGroup;
 			children = (
 				0B7EC8D72BA4152F0076F873 /* SettingView.swift */,
 			);
-			path = SettingView;
+			path = SettingScene;
 			sourceTree = "<group>";
 		};
 		0B7EC8DB2BA426230076F873 /* Font */ = {
@@ -363,6 +364,13 @@
 				0B7EC8ED2BA749460076F873 /* RealmDataManager.swift */,
 			);
 			path = Realm;
+			sourceTree = "<group>";
+		};
+		0BA76E512BA8070500798E44 /* AddScene */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AddScene;
 			sourceTree = "<group>";
 		};
 		A963362B8451B0179290BFF4 /* Frameworks */ = {

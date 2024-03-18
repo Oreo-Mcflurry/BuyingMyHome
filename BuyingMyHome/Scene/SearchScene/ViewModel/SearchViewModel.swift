@@ -38,6 +38,9 @@ final class SearchViewModel {
 	let didChangeInput: Observable<Void?> = Observable(nil)
 	let didChangeOutput: Observable<Void?> = Observable(nil)
 
+	let deleteButtonInput: Observable<Int?> = Observable(nil)
+	let deleteButtonOutput: Observable<Void?> = Observable(nil)
+
 	init() {
 		searchHistory = realmManager.fetchData(SearchHistoryModel.self).sorted(byKeyPath: SearchHistoryModel.sortedProperty, ascending: false)
 
@@ -68,6 +71,13 @@ final class SearchViewModel {
 		didChangeInput.bind { [weak self] _ in
 			self?.searchOutput.value = (nil,nil)
 			self?.didChangeOutput.value = ()
+		}
+
+		deleteButtonInput.bind { [weak self] value in
+			guard let value else { return }
+			guard let self else { return }
+			self.realmManager.deleteData(self.searchHistory[value])
+			deleteButtonOutput.value = ()
 		}
 	}
 

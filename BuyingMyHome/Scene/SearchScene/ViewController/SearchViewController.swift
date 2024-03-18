@@ -51,6 +51,10 @@ final class SearchViewController: BaseViewController {
 		viewModel.didChangeOutput.bind { [weak self] _ in
 			self?.searchView.searchAndHistoryTableView.reloadData()
 		}
+
+		viewModel.deleteButtonOutput.bind { [weak self] _ in
+			self?.searchView.searchAndHistoryTableView.reloadData()
+		}
 	}
 }
 
@@ -113,12 +117,13 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 			let cell = tableView.dequeueReusableCell(withIdentifier: SearchHistoryTableViewCell.description(), for: indexPath) as! SearchHistoryTableViewCell
 			cell.configurationCell(viewModel.searchHistory[indexPath.row])
 			cell.deleteButton.addTarget(self, action: #selector(deleteButtonCliced), for: .touchUpInside)
+			cell.deleteButton.tag = indexPath.row
 			return cell
 		}
 	}
 
-	@objc func deleteButtonCliced() {
-
+	@objc func deleteButtonCliced(sender: UIButton) {
+		viewModel.deleteButtonInput.value = sender.tag
 	}
 
 	private func setTableView() {
