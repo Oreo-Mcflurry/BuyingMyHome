@@ -18,19 +18,20 @@ final class SearchViewModel {
 
 	private var page = 1
 	private var realmManager = RealmDataManager()
+	var searchResult: KakaoSearchModel?
 
 	var searchHistory: Results<SearchHistoryModel>!
 
 	var isPresentSearchController: SearchControllerPresent = .dismiss
 
-	let didSelectInput: Observable<KakaoSearchResult?> = Observable(nil)
-	let didSelectOutput: Observable<KakaoSearchResult?> = Observable(nil)
+	let didSelectInput: Observable<Int?> = Observable(nil)
+	let didSelectOutput: Observable<SearchToMapDataPassingModel?> = Observable(nil)
 
 	let searchControllerPresentInput: Observable<SearchControllerPresent?> = Observable(nil)
 	let searchControllerPresentOutput: Observable<Void?> = Observable(nil)
 
 	let searchInput: Observable<String?> = Observable(nil)
-	let searchOutput: Observable<(KakaoSearchModel?, RequestManager.APIError?)> = Observable((nil,nil))
+	let searchOutput: Observable<RequestManager.APIError?> = Observable(nil)
 
 	let pagingInput: Observable<String?> = Observable(nil)
 	let pagingOutput: Observable<Void?> = Observable(nil)
@@ -45,7 +46,6 @@ final class SearchViewModel {
 		searchHistory = realmManager.fetchData(SearchHistoryModel.self).sorted(byKeyPath: SearchHistoryModel.sortedProperty, ascending: false)
 
 		didSelectInput.bind { [weak self] value in
-			self?.didSelectOutput.value = value
 			self?.didSelectAction(value)
 		}
 
@@ -54,7 +54,7 @@ final class SearchViewModel {
 			self?.isPresentSearchController = value
 			self?.searchControllerPresentOutput.value = ()
 			if case .dismiss = self?.isPresentSearchController {
-				self?.searchOutput.value = (nil,nil)
+				self?.searchOutput.value = (nil)
 			}
 		}
 
@@ -69,7 +69,7 @@ final class SearchViewModel {
 		}
 
 		didChangeInput.bind { [weak self] _ in
-			self?.searchOutput.value = (nil,nil)
+			self?.searchOutput.value = (nil)
 			self?.didChangeOutput.value = ()
 		}
 
@@ -81,16 +81,29 @@ final class SearchViewModel {
 		}
 	}
 
-	func didSelectAction(_ value: KakaoSearchResult?) {
+	func didSelectAction(_ value: Int?) {
 		guard let value else { return }
-		realmManager.deleteDuplicate(value)
-		realmManager.saveData(SearchHistoryModel(from: value))
+
+		switch isPresentSearchController {
+		case .present:
+			guard let item = self.searchResult?.documents[value] else { return }
+			RequestManager().request(.naverGeocoding(address: item.roadAddressName), NaverGeocodingModel.self) { [weak self] result, error in
+				guard let result else { return }
+				self?.didSelectOutput.value = SearchToMapDataPassingModel(from: result)
+				self?.realmManager.saveData(SearchHistoryModel(from: result))
+			}
+		case .dismiss:
+			self.didSelectOutput.value = SearchToMapDataPassingModel(from: searchHistory[value])
+		}
+
+		//		realmManager.deleteDuplicate(value)
+
 	}
 
 	var numberOfRowsInSection: Int {
 		switch isPresentSearchController {
 		case .present:
-			return searchOutput.value.0?.documents.count ?? 0
+			return searchResult?.documents.count ?? 0
 		case .dismiss:
 			return searchHistory.count
 		}
@@ -99,16 +112,17 @@ final class SearchViewModel {
 	private func searchToKakao(searchText: String) {
 		page = 1
 		RequestManager().request(.kakaoSearch(searchText: searchText, page: page), KakaoSearchModel.self) { [weak self] result, error in
-			self?.searchOutput.value = (result, error)
+			self?.searchResult = result
+			self?.searchOutput.value = (error)
 		}
 	}
 
 	private func pagingSearch(searchText: String) {
-		if let value = searchOutput.value.0?.meta.isEnd, value { return }
+		if let value = searchResult?.meta.isEnd, value { return }
 		page += 1
 		RequestManager().request(.kakaoSearch(searchText: searchText, page: page), KakaoSearchModel.self) { [weak self] result, error in
-			self?.searchOutput.value.0?.documents.append(contentsOf: result?.documents ?? [])
-			self?.searchOutput.value.0?.meta.isEnd = result?.meta.isEnd ?? false
+			self?.searchResult?.documents.append(contentsOf: result?.documents ?? [])
+			self?.searchResult?.meta.isEnd = result?.meta.isEnd ?? true
 			self?.pagingOutput.value = ()
 		}
 	}

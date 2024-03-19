@@ -49,6 +49,12 @@
 		0BA76E492BA7CE1500798E44 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 0BA76E482BA7CE1500798E44 /* FirebaseCrashlytics */; };
 		0BA76E4B2BA7CE1500798E44 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 0BA76E4A2BA7CE1500798E44 /* FirebaseMessaging */; };
 		0BA76E502BA7CF7B00798E44 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BA76E4F2BA7CF7B00798E44 /* GoogleService-Info.plist */; };
+		0BA76E562BA8078700798E44 /* AddEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA76E552BA8078700798E44 /* AddEditViewController.swift */; };
+		0BA76E582BA807CF00798E44 /* AddEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA76E572BA807CF00798E44 /* AddEditView.swift */; };
+		0BA76E5B2BA8084400798E44 /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = 0BA76E5A2BA8084400798E44 /* Tabman */; };
+		0BA76E5F2BA9165F00798E44 /* NaverReverseGeocodingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA76E5E2BA9165F00798E44 /* NaverReverseGeocodingModel.swift */; };
+		0BA76E682BA9638900798E44 /* NaverGeocodingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA76E672BA9638900798E44 /* NaverGeocodingModel.swift */; };
+		0BA76E6B2BA9767D00798E44 /* SearchToMapDataPassingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA76E6A2BA9767D00798E44 /* SearchToMapDataPassingModel.swift */; };
 		0BCD87BF2B9C36BF0018F06B /* CheckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCD87BE2B9C36BF0018F06B /* CheckList.swift */; };
 		0BCD87C12B9C36D50018F06B /* AroundFacilitie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCD87C02B9C36D50018F06B /* AroundFacilitie.swift */; };
 		0BCD87C32B9C36EC0018F06B /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCD87C22B9C36EC0018F06B /* Folder.swift */; };
@@ -90,6 +96,11 @@
 		0B7EC8ED2BA749460076F873 /* RealmDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDataManager.swift; sourceTree = "<group>"; };
 		0BA76E432BA754C000798E44 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		0BA76E4F2BA7CF7B00798E44 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0BA76E552BA8078700798E44 /* AddEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditViewController.swift; sourceTree = "<group>"; };
+		0BA76E572BA807CF00798E44 /* AddEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditView.swift; sourceTree = "<group>"; };
+		0BA76E5E2BA9165F00798E44 /* NaverReverseGeocodingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverReverseGeocodingModel.swift; sourceTree = "<group>"; };
+		0BA76E672BA9638900798E44 /* NaverGeocodingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverGeocodingModel.swift; sourceTree = "<group>"; };
+		0BA76E6A2BA9767D00798E44 /* SearchToMapDataPassingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchToMapDataPassingModel.swift; sourceTree = "<group>"; };
 		0BCD87BE2B9C36BF0018F06B /* CheckList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckList.swift; sourceTree = "<group>"; };
 		0BCD87C02B9C36D50018F06B /* AroundFacilitie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundFacilitie.swift; sourceTree = "<group>"; };
 		0BCD87C22B9C36EC0018F06B /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
@@ -108,6 +119,7 @@
 				0B1F84142B99949200CBF4DE /* Alamofire in Frameworks */,
 				0B1F840F2B99948200CBF4DE /* Realm in Frameworks */,
 				0B1F84172B99949B00CBF4DE /* Toast in Frameworks */,
+				0BA76E5B2BA8084400798E44 /* Tabman in Frameworks */,
 				0B1F840C2B99944E00CBF4DE /* SnapKit in Frameworks */,
 				0B1F841D2B9994B300CBF4DE /* TextFieldEffects in Frameworks */,
 				0BA76E492BA7CE1500798E44 /* FirebaseCrashlytics in Frameworks */,
@@ -161,7 +173,7 @@
 		0B1F83EC2B99936A00CBF4DE /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				0BA76E512BA8070500798E44 /* AddScene */,
+				0BA76E512BA8070500798E44 /* AddEditScene */,
 				0B7EC8D62BA415200076F873 /* SettingScene */,
 				0B7EC8C82BA40CEA0076F873 /* SearchScene */,
 				0B1F83ED2B99936F00CBF4DE /* MapScene */,
@@ -240,6 +252,7 @@
 		0B1F84232B9AE9EC00CBF4DE /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0BA76E692BA9766600798E44 /* DataPassing */,
 				0B7EC8E32BA714280076F873 /* API */,
 				0B1F84282B9BF39700CBF4DE /* Realm */,
 			);
@@ -346,6 +359,8 @@
 			isa = PBXGroup;
 			children = (
 				0B7EC8E42BA714390076F873 /* KakaoSearchModel.swift */,
+				0BA76E5E2BA9165F00798E44 /* NaverReverseGeocodingModel.swift */,
+				0BA76E672BA9638900798E44 /* NaverGeocodingModel.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -366,11 +381,45 @@
 			path = Realm;
 			sourceTree = "<group>";
 		};
-		0BA76E512BA8070500798E44 /* AddScene */ = {
+		0BA76E512BA8070500798E44 /* AddEditScene */ = {
+			isa = PBXGroup;
+			children = (
+				0BA76E542BA8075400798E44 /* ViewModel */,
+				0BA76E532BA8075000798E44 /* ViewController */,
+				0BA76E522BA8074E00798E44 /* View */,
+			);
+			path = AddEditScene;
+			sourceTree = "<group>";
+		};
+		0BA76E522BA8074E00798E44 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0BA76E572BA807CF00798E44 /* AddEditView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0BA76E532BA8075000798E44 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0BA76E552BA8078700798E44 /* AddEditViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		0BA76E542BA8075400798E44 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = AddScene;
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0BA76E692BA9766600798E44 /* DataPassing */ = {
+			isa = PBXGroup;
+			children = (
+				0BA76E6A2BA9767D00798E44 /* SearchToMapDataPassingModel.swift */,
+			);
+			path = DataPassing;
 			sourceTree = "<group>";
 		};
 		A963362B8451B0179290BFF4 /* Frameworks */ = {
@@ -419,6 +468,7 @@
 				0BA76E462BA7CE1500798E44 /* FirebaseAnalyticsWithoutAdIdSupport */,
 				0BA76E482BA7CE1500798E44 /* FirebaseCrashlytics */,
 				0BA76E4A2BA7CE1500798E44 /* FirebaseMessaging */,
+				0BA76E5A2BA8084400798E44 /* Tabman */,
 			);
 			productName = BuyingMyHome;
 			productReference = 0B1F83D12B99838500CBF4DE /* BuyingMyHome.app */;
@@ -456,6 +506,7 @@
 				0B1F84182B9994A300CBF4DE /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				0B1F841B2B9994B300CBF4DE /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
 				0BA76E452BA7CE1500798E44 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				0BA76E592BA8084400798E44 /* XCRemoteSwiftPackageReference "Tabman" */,
 			);
 			productRefGroup = 0B1F83D22B99838500CBF4DE /* Products */;
 			projectDirPath = "";
@@ -534,13 +585,16 @@
 				0B1F83FE2B9993C000CBF4DE /* TabbarViewController.swift in Sources */,
 				0B7EC8E82BA714AE0076F873 /* PlaceType.swift in Sources */,
 				0B7EC8E02BA55AE40076F873 /* SearchHistoryTableViewCell.swift in Sources */,
+				0BA76E5F2BA9165F00798E44 /* NaverReverseGeocodingModel.swift in Sources */,
 				0B1F84042B9993DF00CBF4DE /* BaseCollectionViewCell.swift in Sources */,
 				0B1F83D52B99838500CBF4DE /* AppDelegate.swift in Sources */,
+				0BA76E682BA9638900798E44 /* NaverGeocodingModel.swift in Sources */,
 				0BA76E442BA754C000798E44 /* DateFormatter+Extension.swift in Sources */,
 				0BCD87C12B9C36D50018F06B /* AroundFacilitie.swift in Sources */,
 				0B1F84272B9AEA1F00CBF4DE /* APIkind.swift in Sources */,
 				0B7EC8EB2BA747400076F873 /* SearchHistory.swift in Sources */,
 				0B7EC8C32BA2BBB70076F873 /* MapTapInfoView.swift in Sources */,
+				0BA76E562BA8078700798E44 /* AddEditViewController.swift in Sources */,
 				0B1F842B2B9BF3A400CBF4DE /* RealEstateProperty.swift in Sources */,
 				0B7EC8D02BA40D460076F873 /* SearchView.swift in Sources */,
 				0B7EC8CE2BA40D150076F873 /* SearchViewController.swift in Sources */,
@@ -549,9 +603,11 @@
 				0B1F84252B9AEA1200CBF4DE /* RequestManager.swift in Sources */,
 				0B1F84072B9993DF00CBF4DE /* BaseViewController.swift in Sources */,
 				0B7EC8EE2BA749460076F873 /* RealmDataManager.swift in Sources */,
+				0BA76E582BA807CF00798E44 /* AddEditView.swift in Sources */,
 				0B7EC8E52BA714390076F873 /* KakaoSearchModel.swift in Sources */,
 				0BCD87C32B9C36EC0018F06B /* Folder.swift in Sources */,
 				0B1F83D72B99838500CBF4DE /* SceneDelegate.swift in Sources */,
+				0BA76E6B2BA9767D00798E44 /* SearchToMapDataPassingModel.swift in Sources */,
 				0B1F84062B9993DF00CBF4DE /* BaseUIView.swift in Sources */,
 				0B1F84052B9993DF00CBF4DE /* BaseTableViewCell.swift in Sources */,
 				0B7EC8DA2BA4169B0076F873 /* SearchViewModel.swift in Sources */,
@@ -848,6 +904,14 @@
 				minimumVersion = 10.22.1;
 			};
 		};
+		0BA76E592BA8084400798E44 /* XCRemoteSwiftPackageReference "Tabman" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/uias/Tabman.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -900,6 +964,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0BA76E452BA7CE1500798E44 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
+		};
+		0BA76E5A2BA8084400798E44 /* Tabman */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0BA76E592BA8084400798E44 /* XCRemoteSwiftPackageReference "Tabman" */;
+			productName = Tabman;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

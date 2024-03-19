@@ -39,11 +39,11 @@ class RealmDataManager {
 		}
 	}
 
-	func deleteDuplicate(_ data: KakaoSearchResult) {
-		fetchData(SearchHistoryModel.self).where { $0.addressName == data.addressName && $0.placeName == data.placeName }.forEach { value in
-			deleteData(value)
-		}
-	}
+//	func deleteDuplicate(_ data: KakaoSearchResult) {
+////		fetchData(SearchHistoryModel.self).where { $0.roadAddressName == data.roadAddressName && $0.placeName == data.placeName }.forEach { value in
+////			deleteData(value)
+////		}
+//	}
 }
 
 //enum RealmType {

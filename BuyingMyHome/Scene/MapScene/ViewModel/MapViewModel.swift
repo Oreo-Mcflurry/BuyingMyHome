@@ -18,8 +18,8 @@ final class MapViewModel {
 	let searchButtonInput: Observable<Void?> = Observable(nil)
 	let searchButtonOutput: Observable<Void?> = Observable(nil)
 
-	let searchResultInput: Observable<KakaoSearchResult?> = Observable(nil)
-	let searchResultOutput: Observable<KakaoSearchResult?> = Observable(nil)
+	let searchResultInput: Observable<SearchToMapDataPassingModel?> = Observable(nil)
+	let searchResultOutput: Observable<SearchToMapDataPassingModel?> = Observable(nil)
 
 	private let tabMapMarker = NMFMarker()
 
@@ -38,38 +38,26 @@ final class MapViewModel {
 		}
 	}
 
-	func tapMap(_ mapView: NMFMapView, latlng: NMGLatLng) {
-		tapMapMakeMarker(mapView, latlng: latlng) { [weak self] address in
-			self?.tapMapOutPut.value = ("", address)
-		}
-	}
-
 	func tapSymbol(_ mapView: NMFMapView, didTap symbol: NMFSymbol) {
+		if Int(symbol.caption) != nil || symbol.caption.count == 1 { return }
 		tapMapMakeMarker(mapView, latlng: symbol.position) { [weak self] address in
-			if Int(symbol.caption) != nil {
-				self?.tapMapOutPut.value = ("", address)
-			} else {
-				self?.tapMapOutPut.value = (symbol.caption, address)
-			}
+
+			self?.tapMapOutPut.value = (symbol.caption, address)
 		}
+
 	}
 
 	func searchMarker(_ mapView: NMFMapView, latlng: NMGLatLng) {
 		deleteMarker()
 		makeMarker(mapView, latlng: latlng)
+		mapView.moveCamera(NMFCameraUpdate(scrollTo: latlng))
+		mapView.zoomLevel = 15
 	}
 
 	private func tapMapMakeMarker(_ mapView: NMFMapView, latlng: NMGLatLng, _ completionHandler: @escaping ((String)->Void)) {
 		deleteMarker()
 		makeMarker(mapView, latlng: latlng)
-
-
-		let geocoder = CLGeocoder()
-		geocoder.reverseGeocodeLocation(CLLocation(latitude: latlng.lat, longitude: latlng.lng)) { placemark, error in
-			if error != nil { return }
-			guard let place = placemark?.first else { return }
-			completionHandler("\(place.locality ?? "") \(place.name ?? "")")
-		}
+		requestGecoding(latlng, completionHandler)
 	}
 
 	private func deleteMarker() {
@@ -80,6 +68,12 @@ final class MapViewModel {
 		DispatchQueue.main.async { [weak self] in
 			self?.tabMapMarker.position = NMGLatLng(lat: latlng.lat, lng: latlng.lng)
 			self?.tabMapMarker.mapView = mapView
+		}
+	}
+
+	private func requestGecoding(_ latlng: NMGLatLng, _ completionHandler: @escaping ((String)->Void)) {
+		RequestManager().request(.naverReverseGeocoding(latlng: latlng), NaverReverseGeocodingModel.self) { result, error in
+			completionHandler(result?.addreess ?? "")
 		}
 	}
 }

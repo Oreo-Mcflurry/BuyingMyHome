@@ -7,14 +7,32 @@
 
 import Foundation
 import Alamofire
+import NMapsMap
 
 enum APIkind {
 	case kakaoSearch(searchText: String, page: Int, placeType: [PlaceType]? = nil)
+	case naverReverseGeocoding(latlng: NMGLatLng)
+	case naverGeocoding(address: String)
+
+	var getType: Decodable.Type {
+		switch self {
+		case .kakaoSearch:
+			return KakaoSearchModel.self
+		case .naverReverseGeocoding:
+			return KakaoSearchModel.self
+		case .naverGeocoding:
+			return NaverGeocodingModel.self
+		}
+	}
 
 	var getURL: URL {
 		switch self {
 		case .kakaoSearch:
 			return URL(string: "https://dapi.kakao.com/v2/local/search/keyword.json")!
+		case .naverReverseGeocoding:
+			return URL(string: "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc")!
+		case .naverGeocoding(address: let address):
+			return URL(string: "https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode")!
 		}
 	}
 
@@ -26,6 +44,8 @@ enum APIkind {
 		switch self {
 		case .kakaoSearch:
 			return ["Authorization": APIkeys.kakaoSecreat.rawValue]
+		case .naverReverseGeocoding, .naverGeocoding:
+			return ["X-NCP-APIGW-API-KEY-ID": APIkeys.naverMapClient.rawValue, "X-NCP-APIGW-API-KEY": APIkeys.naverMapSecreat.rawValue]
 		}
 	}
 
@@ -38,6 +58,11 @@ enum APIkind {
 			} else {
 				return ["query": searchText, "page": "\(page)"]
 			}
+		case .naverReverseGeocoding(latlng: let latlng):
+			let coordsString = "\(latlng.lng),\(latlng.lat)"
+			return ["coords": coordsString, "output": "json", "orders": "roadaddr"]
+		case .naverGeocoding(address: let address):
+			return ["query": address]
 		}
 	}
 }

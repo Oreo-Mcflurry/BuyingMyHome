@@ -11,7 +11,7 @@ final class SearchViewController: BaseViewController {
 
 	let searchView = SearchView()
 	let viewModel = SearchViewModel()
-	var completionHandler: ((KakaoSearchResult)->Void)?
+	var completionHandler: ((SearchToMapDataPassingModel)->Void)?
 
 	override func loadView() {
 		self.view = searchView
@@ -37,9 +37,9 @@ final class SearchViewController: BaseViewController {
 		}
 
 		viewModel.searchOutput.bind { [weak self] value in
-			if value.1 != nil {
+			if let value {
 				self?.showToast(.searchError)
-			} else if value.0 != nil {
+			} else  {
 				self?.searchView.searchAndHistoryTableView.reloadData()
 			}
 		}
@@ -89,14 +89,7 @@ extension SearchViewController: UISearchControllerDelegate {
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-		switch viewModel.isPresentSearchController {
-		case .present:
-			viewModel.didSelectInput.value = viewModel.searchOutput.value.0!.documents[indexPath.row]
-		case .dismiss: 
-			viewModel.didSelectInput.value = KakaoSearchResult(from: viewModel.searchHistory[indexPath.row])
-		}
-		
+		viewModel.didSelectInput.value = indexPath.row
 		searchView.searchController.isActive = false
 		navigationController?.popViewController(animated: true)
 	}
@@ -110,7 +103,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 		switch viewModel.isPresentSearchController {
 		case .present:
 			let cell = UITableViewCell()
-			cell.contentConfiguration = configureCell(withData: viewModel.searchOutput.value.0?.documents[indexPath.row], cell)
+			cell.contentConfiguration = configureCell(withData: viewModel.searchResult?.documents[indexPath.row], cell)
 			return cell
 
 		case .dismiss:
@@ -145,7 +138,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension SearchViewController: UITableViewDataSourcePrefetching {
 	func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-		if let count = viewModel.searchOutput.value.0?.documents.count, indexPaths.contains(where: { $0.row == count-1 }) {
+		if let count = viewModel.searchResult?.documents.count, indexPaths.contains(where: { $0.row == count-1 }) {
 			viewModel.pagingInput.value = searchView.searchController.searchBar.text
 		}
 	}

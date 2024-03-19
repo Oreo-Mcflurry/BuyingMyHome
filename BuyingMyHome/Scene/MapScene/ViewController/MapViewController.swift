@@ -50,9 +50,8 @@ final class MapViewController: BaseViewController {
 			guard let value else { return }
 			let latlng = NMGLatLng(lat: value.lat, lng: value.lng)
 
-			self?.mapView.configureUI((value.addressName, value.placeName))
+			self?.mapView.configureUI((value.symbol, value.address))
 			self?.viewModel.searchMarker(self!.mapView.naverMap.mapView, latlng: latlng)
-			self?.self.mapView.naverMap.mapView.moveCamera(NMFCameraUpdate(scrollTo: latlng))
 			self?.mapView.isInfoViewAppear(true)
 		}
 	}
@@ -70,10 +69,6 @@ extension MapViewController: NMFMapViewTouchDelegate {
 
 	private func setMapView() {
 		mapView.naverMap.mapView.touchDelegate = self
-	}
-
-	func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
-		viewModel.tapMap(mapView, latlng: latlng)
 	}
 
 	func mapView(_ mapView: NMFMapView, didTap symbol: NMFSymbol) -> Bool {
