@@ -32,4 +32,7 @@ class BaseViewController: UIViewController {
 		self.view.makeToast(message.rawValue)
 	}
 
+	deinit {
+		print("Deinit")
+	}
 }

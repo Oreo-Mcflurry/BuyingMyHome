@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class SearchHistoryTableViewCell: BaseTableViewCell {
+final class SearchHistoryTableViewCell: BaseTableViewCell {
 	let addressLabel = UILabel()
 	let deleteButton = UIButton()
 	let dateLabel = UILabel()
@@ -44,7 +44,7 @@ class SearchHistoryTableViewCell: BaseTableViewCell {
 	}
 
 	func configurationCell(_ data: SearchHistoryModel) {
-		addressLabel.text = data.roadAddressName
+		addressLabel.text = data.symbol.isEmpty ? data.roadAddressName : data.symbol
 		dateLabel.text = DateFormatter.searchDateFormatter.string(from: data.addDate)
 	}
 }

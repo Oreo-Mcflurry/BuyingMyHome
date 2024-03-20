@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class RealEstateProperty: Object {
+final class RealEstateProperty: Object {
 	@Persisted(primaryKey: true) var id: ObjectId
 	@Persisted var addDate: Date
 	@Persisted var folder: ObjectId?

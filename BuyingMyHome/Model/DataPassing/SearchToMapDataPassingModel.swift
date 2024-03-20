@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SearchToMapDataPassingModel {
+final class SearchToMapDataPassingModel {
 	let lat: Double
 	let lng: Double
 	let address: String

@@ -20,24 +20,24 @@ final class MapTapInfoView: BaseUIView {
 
 	override func configureLayout() {
 		addressLabel.snp.makeConstraints {
-			$0.top.leading.equalTo(self).inset(defautPadding)
+			$0.top.leading.equalTo(self).inset(defaultPadding)
 		}
 
 		cancelButton.snp.makeConstraints {
-			$0.top.trailing.equalTo(self).inset(defautPadding)
-			$0.leading.equalTo(addressLabel.snp.trailing).offset(defautPadding)
+			$0.top.trailing.equalTo(self).inset(defaultPadding)
+			$0.leading.equalTo(addressLabel.snp.trailing).offset(defaultPadding)
 		}
 
 		symbolLabel.snp.makeConstraints {
 			$0.top.equalTo(addressLabel.snp.bottom).offset(betweenPadding)
-			$0.horizontalEdges.equalTo(self).inset(defautPadding)
+			$0.horizontalEdges.equalTo(self).inset(defaultPadding)
 		}
 		
 		addButton.snp.makeConstraints {
 			$0.top.equalTo(symbolLabel.snp.bottom).offset(betweenPadding)
-			$0.trailing.equalTo(self).inset(defautPadding)
-			$0.leading.greaterThanOrEqualTo(self).inset(defautPadding)
-			$0.bottom.equalTo(self).inset(defautPadding)
+			$0.trailing.equalTo(self).inset(defaultPadding)
+			$0.leading.greaterThanOrEqualTo(self).inset(defaultPadding)
+			$0.bottom.equalTo(self).inset(defaultPadding)
 		}
 	}
 

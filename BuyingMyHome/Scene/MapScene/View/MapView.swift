@@ -24,7 +24,7 @@ final class MapView: BaseUIView {
 		}
 
 		searchButton.snp.makeConstraints {
-			$0.top.trailing.equalTo(self.safeAreaLayoutGuide).offset(-defautPadding)
+			$0.top.trailing.equalTo(self.safeAreaLayoutGuide).offset(-defaultPadding)
 			$0.size.equalTo(40)
 		}
 	}
@@ -40,7 +40,7 @@ final class MapView: BaseUIView {
 			addSubview(infoView)
 			infoView.snp.makeConstraints {
 				$0.bottom.equalTo(self.safeAreaLayoutGuide).inset(verticalPadding)
-				$0.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(defautPadding)
+				$0.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(defaultPadding)
 			}
 		} else {
 			infoView.removeFromSuperview()

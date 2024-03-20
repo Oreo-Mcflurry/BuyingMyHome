@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class SearchHistoryModel: Object {
+final class SearchHistoryModel: Object {
 	@Persisted(primaryKey: true) var id: ObjectId
 	@Persisted var addDate: Date = Date()
 	@Persisted var symbol: String
@@ -17,6 +17,14 @@ class SearchHistoryModel: Object {
 	@Persisted var longitude: Double
 
 	convenience init(from item: NaverGeocodingModel) {
+		self.init()
+		self.roadAddressName = item.address
+		self.symbol = item.symbol
+		self.latitude = item.lat
+		self.longitude = item.lng
+	}
+
+	convenience init(from item: SearchToMapDataPassingModel) {
 		self.init()
 		self.roadAddressName = item.address
 		self.symbol = item.symbol

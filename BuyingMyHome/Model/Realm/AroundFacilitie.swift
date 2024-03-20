@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class AroundFacilitie: Object {
+final class AroundFacilitie: Object {
 	@Persisted(primaryKey: true) var id: ObjectId
 	@Persisted var facilitieName: String
 	@Persisted var x: Double

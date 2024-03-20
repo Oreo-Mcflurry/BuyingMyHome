@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class Folder: Object {
+final class Folder: Object {
 	@Persisted(primaryKey: true) var id: ObjectId
 	@Persisted var title: String
 }

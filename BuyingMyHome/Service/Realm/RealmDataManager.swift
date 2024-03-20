@@ -8,9 +8,8 @@
 import Foundation
 import RealmSwift
 
-class RealmDataManager {
-
-
+final class RealmDataManager {
+	
 	private var realm: Realm = {
 		return try! Realm()
 	}()
@@ -39,11 +38,11 @@ class RealmDataManager {
 		}
 	}
 
-//	func deleteDuplicate(_ data: KakaoSearchResult) {
-////		fetchData(SearchHistoryModel.self).where { $0.roadAddressName == data.roadAddressName && $0.placeName == data.placeName }.forEach { value in
-////			deleteData(value)
-////		}
-//	}
+	func deleteDuplicate(_ data: SearchToMapDataPassingModel) {
+		if let data = fetchData(SearchHistoryModel.self).where({ $0.roadAddressName == data.address && $0.latitude == data.lat && $0.longitude == data.lng }).first {
+			deleteData(data)
+		}
+	}
 }
 
 //enum RealmType {

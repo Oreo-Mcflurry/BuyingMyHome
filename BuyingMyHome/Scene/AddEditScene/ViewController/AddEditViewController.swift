@@ -7,9 +7,20 @@
 
 import UIKit
 
-class AddEditViewController: BaseViewController {
+final class AddEditViewController: BaseViewController {
+
+	let addEditViewModel = AddEditViewModel()
+	let addEditView = AddEditView()
+
+	override func loadView() {
+		self.view = addEditView
+	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+	}
+
+	override func configureView() {
+		self.tabBarController?.tabBar.isHidden = true
 	}
 }

@@ -18,13 +18,19 @@ final class MapViewModel {
 	let searchButtonInput: Observable<Void?> = Observable(nil)
 	let searchButtonOutput: Observable<Void?> = Observable(nil)
 
+	let addEditbuttonInput: Observable<Void?> = Observable(nil)
+	let addEditbuttonOutput: Observable<Void?> = Observable(nil)
+
 	let searchResultInput: Observable<SearchToMapDataPassingModel?> = Observable(nil)
 	let searchResultOutput: Observable<SearchToMapDataPassingModel?> = Observable(nil)
+
+	var searchResult: SearchToMapDataPassingModel?
 
 	private let tabMapMarker = NMFMarker()
 
 	init() {
 		cancelButtonInput.bind { [weak self] _ in
+			self?.searchResult = nil
 			self?.deleteMarker()
 			self?.cancelButtonOutput.value = ()
 		}
@@ -34,14 +40,21 @@ final class MapViewModel {
 		}
 
 		searchResultInput.bind { [weak self] value in
+			self?.searchResult = value
 			self?.searchResultOutput.value = value
+		}
+
+		addEditbuttonInput.bind { [weak self] _ in
+			self?.addEditbuttonOutput.value = ()
 		}
 	}
 
 	func tapSymbol(_ mapView: NMFMapView, didTap symbol: NMFSymbol) {
 		if Int(symbol.caption) != nil || symbol.caption.count == 1 { return }
 		tapMapMakeMarker(mapView, latlng: symbol.position) { [weak self] address in
-
+			if address.isEmpty { return }
+			self?.deleteMarker()
+			self?.makeMarker(mapView, latlng: symbol.position)
 			self?.tapMapOutPut.value = (symbol.caption, address)
 		}
 
@@ -55,8 +68,6 @@ final class MapViewModel {
 	}
 
 	private func tapMapMakeMarker(_ mapView: NMFMapView, latlng: NMGLatLng, _ completionHandler: @escaping ((String)->Void)) {
-		deleteMarker()
-		makeMarker(mapView, latlng: latlng)
 		requestGecoding(latlng, completionHandler)
 	}
 

@@ -81,7 +81,7 @@ final class SearchViewModel {
 		}
 	}
 
-	func didSelectAction(_ value: Int?) {
+	private func didSelectAction(_ value: Int?) {
 		guard let value else { return }
 
 		switch isPresentSearchController {
@@ -90,14 +90,17 @@ final class SearchViewModel {
 			RequestManager().request(.naverGeocoding(address: item.roadAddressName), NaverGeocodingModel.self) { [weak self] result, error in
 				guard let result else { return }
 				self?.didSelectOutput.value = SearchToMapDataPassingModel(from: result)
-				self?.realmManager.saveData(SearchHistoryModel(from: result))
+				self?.saveAndDelete(SearchToMapDataPassingModel(from: result))
 			}
 		case .dismiss:
 			self.didSelectOutput.value = SearchToMapDataPassingModel(from: searchHistory[value])
+			self.saveAndDelete(SearchToMapDataPassingModel(from: searchHistory[value]))
 		}
+	}
 
-		//		realmManager.deleteDuplicate(value)
-
+	private func saveAndDelete(_ data: SearchToMapDataPassingModel) {
+		realmManager.deleteDuplicate(data)
+		realmManager.saveData(SearchHistoryModel(from: data))
 	}
 
 	var numberOfRowsInSection: Int {

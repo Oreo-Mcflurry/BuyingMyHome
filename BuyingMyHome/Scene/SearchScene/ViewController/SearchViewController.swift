@@ -19,10 +19,14 @@ final class SearchViewController: BaseViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.navigationItem.title = "검색"
 		setTableView()
 		setSearchController()
 		setSeachbar()
+	}
+
+	override func configureView() {
+		self.tabBarController?.tabBar.isHidden = true
+		self.navigationItem.title = "검색"
 	}
 
 	override func configureBinding() {
@@ -37,7 +41,7 @@ final class SearchViewController: BaseViewController {
 		}
 
 		viewModel.searchOutput.bind { [weak self] value in
-			if let value {
+			if value != nil {
 				self?.showToast(.searchError)
 			} else  {
 				self?.searchView.searchAndHistoryTableView.reloadData()

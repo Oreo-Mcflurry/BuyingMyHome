@@ -31,7 +31,7 @@ enum APIkind {
 			return URL(string: "https://dapi.kakao.com/v2/local/search/keyword.json")!
 		case .naverReverseGeocoding:
 			return URL(string: "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc")!
-		case .naverGeocoding(address: let address):
+		case .naverGeocoding:
 			return URL(string: "https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode")!
 		}
 	}

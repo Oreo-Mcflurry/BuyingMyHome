@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class CheckList: Object {
+final class CheckList: Object {
 	@Persisted(primaryKey: true) var id: ObjectId
 
 	@Persisted var checkTitle: String

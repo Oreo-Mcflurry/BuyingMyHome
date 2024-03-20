@@ -17,6 +17,10 @@ final class MapViewController: BaseViewController {
 		self.view = mapView
 	}
 
+	override func viewWillAppear(_ animated: Bool) {
+		self.tabBarController?.tabBar.isHidden = false
+	}
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setMapView()
@@ -24,8 +28,8 @@ final class MapViewController: BaseViewController {
 
 	override func configureView() {
 		mapView.infoView.cancelButton.addTarget(self, action: #selector(tapCancelButton), for: .touchUpInside)
-		mapView.searchButton.addTarget(self, action: #selector(tapSearchButton), for: .touchUpInside
-		)
+		mapView.searchButton.addTarget(self, action: #selector(tapSearchButton), for: .touchUpInside)
+		mapView.infoView.addButton.addTarget(self, action: #selector(tapAddEditButton), for: .touchUpInside)
 	}
 
 	override func configureBinding() {
@@ -54,6 +58,11 @@ final class MapViewController: BaseViewController {
 			self?.viewModel.searchMarker(self!.mapView.naverMap.mapView, latlng: latlng)
 			self?.mapView.isInfoViewAppear(true)
 		}
+
+		viewModel.addEditbuttonOutput.bind { [weak self] _ in
+			let vc = AddEditViewController()
+			self?.navigationController?.pushViewController(vc, animated: true)
+		}
 	}
 
 	@objc private func tapCancelButton() {
@@ -62,6 +71,10 @@ final class MapViewController: BaseViewController {
 
 	@objc private func tapSearchButton() {
 		viewModel.searchButtonInput.value = ()
+	}
+
+	@objc private func tapAddEditButton() {
+		viewModel.addEditbuttonInput.value = ()
 	}
 }
 
