@@ -18,12 +18,15 @@ final class AddEditView: BaseUIView {
 	let seperator = SeperatorView()
 	let imageMemoView = ImageMemoView()
 	let seperator2 = SeperatorView()
-	let checkListView = CheckListView()
+	let checkListViewController = CheckListViewController()
 
 	override func configureHierarchy() {
 		addSubview(scrollView)
 		scrollView.addSubview(contentView)
-		[defaultInfoView, seperator, imageMemoView, seperator2, checkListView].forEach { contentView.addSubview($0) }
+		[defaultInfoView, seperator, imageMemoView, seperator2].forEach { contentView.addSubview($0) }
+		contentView.inputViewController?.addChild(checkListViewController)
+		contentView.addSubview(checkListViewController.view)
+		checkListViewController.didMove(toParent: contentView.inputViewController)
 	}
 
 	override func configureLayout() {
@@ -34,6 +37,7 @@ final class AddEditView: BaseUIView {
 		contentView.snp.makeConstraints {
 			$0.edges.equalTo(scrollView)
 			$0.width.equalTo(scrollView)
+			$0.height.greaterThanOrEqualTo(1150)
 		}
 
 		defaultInfoView.snp.makeConstraints {
@@ -48,8 +52,9 @@ final class AddEditView: BaseUIView {
 		}
 
 		imageMemoView.snp.makeConstraints {
-			$0.top.equalTo(seperator.snp.bottom)
+			$0.top.equalTo(seperator.snp.bottom).offset(betweenPadding)
 			$0.horizontalEdges.equalTo(contentView)
+			$0.height.equalTo(100)
 		}
 
 		seperator2.snp.makeConstraints {
@@ -58,13 +63,29 @@ final class AddEditView: BaseUIView {
 			$0.height.equalTo(10)
 		}
 
-		checkListView.snp.makeConstraints {
-			$0.top.equalTo(imageMemoView.snp.bottom)
-			$0.horizontalEdges.equalTo(contentView)
-			$0.bottom.equalTo(contentView)
+		checkListViewController.view.snp.makeConstraints {
+			$0.top.equalTo(seperator2.snp.bottom)
+			$0.horizontalEdges.equalTo(contentView).inset(defaultPadding)
+			$0.bottom.greaterThanOrEqualTo(contentView)
 		}
 	}
 
+	override func configureView() {
+		scrollView.autoresizingMask = [.flexibleHeight]
+	}
 
+	func configureUI(_ passingValue: SearchToMapDataPassingModel?, _ markerValue: RealEstateProperty?) {
+		if let passingValue {
+			defaultInfoView.addressTextField.text = passingValue.address
+			defaultInfoView.symbolTextField.text = passingValue.symbol
+		} else if let markerValue {
+			defaultInfoView.addressTextField.text = markerValue.address
+			defaultInfoView.symbolTextField.text = markerValue.symbol
+			imageMemoView.memoTextField.text = markerValue.memo
+			checkListViewController.enviromentCheckViewController.enviromentCheck = markerValue.enviromentCheckArray.isEmpty ? [nil, nil, nil, nil, nil, nil, nil, nil] : markerValue.enviromentCheckArray
+			checkListViewController.insideCheckViewController.insideCheck = markerValue.insideCheckArray.isEmpty ? [nil, nil, nil, nil, nil, nil, nil, nil] : markerValue.insideCheckArray
+			checkListViewController.schoolCheckViewController.schoolCheck = markerValue.schoolCheckArray.isEmpty ? [nil, nil, nil, nil, nil, nil, nil, nil] : markerValue.schoolCheckArray
+		}
+	}
 }
 
