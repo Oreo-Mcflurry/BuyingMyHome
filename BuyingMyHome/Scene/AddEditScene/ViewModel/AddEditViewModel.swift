@@ -8,5 +8,8 @@
 import Foundation
 
 final class AddEditViewModel {
+	
+	var passingValue: SearchToMapDataPassingModel?
+	var markerValue: RealEstateProperty?
 
 }

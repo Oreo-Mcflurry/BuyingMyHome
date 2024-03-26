@@ -11,10 +11,10 @@ import SnapKit
 final class ImageMemoView: BaseUIView {
 	private let infoLabel = InfoLabel()
 	let memoTextField = AddEditHoshiTextField()
-	let imageAddButton = UIButton()
+//	let imageSelectView = ImageSelectView()
 
 	override func configureHierarchy() {
-		[infoLabel, memoTextField, imageAddButton].forEach { addSubview($0) }
+		[infoLabel, memoTextField].forEach { addSubview($0) }
 	}
 
 	override func configureLayout() {
@@ -24,12 +24,20 @@ final class ImageMemoView: BaseUIView {
 		}
 
 		memoTextField.snp.makeConstraints {
-			$0.top.equalTo(infoLabel.snp.bottom)
+			$0.top.equalTo(infoLabel.snp.bottom).offset(betweenPadding)
 			$0.horizontalEdges.equalTo(self.safeAreaInsets).inset(defaultPadding)
+			$0.height.equalTo(textFieldSize)
 		}
+
+//		imageSelectView.snp.makeConstraints {
+//			$0.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(defaultPadding)
+//			$0.top.equalTo(memoTextField.snp.bottom).offset(betweenPadding)
+//		}
+
 	}
 
 	override func configureView() {
 		infoLabel.text = "한줄 평가"
+		memoTextField.placeholder = "한줄 메모 (선택)"
 	}
 }

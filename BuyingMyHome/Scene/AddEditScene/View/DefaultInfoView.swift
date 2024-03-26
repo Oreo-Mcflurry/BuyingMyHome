@@ -27,7 +27,7 @@ final class DefaultInfoView: BaseUIView {
 		}
 
 		symbolTextField.snp.makeConstraints {
-			$0.top.equalTo(infoLabel.snp.bottom)
+			$0.top.equalTo(infoLabel.snp.bottom).offset(betweenPadding)
 			$0.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(defaultPadding)
 			$0.height.equalTo(textFieldSize)
 		}
@@ -60,6 +60,6 @@ final class DefaultInfoView: BaseUIView {
 		dongTextField.placeholder = "동 (선택)"
 		hoTextField.placeholder = "호수 (선택)"
 
-		addressTextField.isEnabled = false
+//		addressTextField.isEnabled = false
 	}
 }
