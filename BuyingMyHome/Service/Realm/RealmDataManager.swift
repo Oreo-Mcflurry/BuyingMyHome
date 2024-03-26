@@ -28,6 +28,16 @@ final class RealmDataManager {
 		}
 	}
 
+	func update<T: Object>(_ data: T)  {
+		do {
+			try realm.write {
+				realm.add(data, update: .modified)
+			}
+		} catch {
+			print(error)
+		}
+	}
+
 	func deleteData<T: Object>(_ data: T) {
 		do {
 			try realm.write {
@@ -37,11 +47,16 @@ final class RealmDataManager {
 			print(error)
 		}
 	}
-
+	
 	func deleteDuplicate(_ data: SearchToMapDataPassingModel) {
 		if let data = fetchData(SearchHistoryModel.self).where({ $0.roadAddressName == data.address && $0.latitude == data.lat && $0.longitude == data.lng }).first {
 			deleteData(data)
 		}
+	}
+
+	func findDuplicate(_ lat: Double, _ lng: Double) -> RealEstateProperty? {
+		guard let data = fetchData(RealEstateProperty.self).where({ $0.lat == lat && $0.lng == lng }).first else { return nil }
+		return data
 	}
 }
 
