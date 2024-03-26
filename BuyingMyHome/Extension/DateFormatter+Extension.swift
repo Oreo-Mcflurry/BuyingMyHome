@@ -8,7 +8,7 @@
 import Foundation
 
 extension DateFormatter {
-	static let searchDateFormatter: DateFormatter = {
+	static let formatDate: DateFormatter = {
 		let formatter = DateFormatter()
 		formatter.dateFormat = "MM.dd"
 		return formatter
