@@ -45,6 +45,6 @@ final class SearchHistoryTableViewCell: BaseTableViewCell {
 
 	func configurationCell(_ data: SearchHistoryModel) {
 		addressLabel.text = data.symbol.isEmpty ? data.roadAddressName : data.symbol
-		dateLabel.text = DateFormatter.searchDateFormatter.string(from: data.addDate)
+		dateLabel.text = DateFormatter.formatDate.string(from: data.addDate)
 	}
 }

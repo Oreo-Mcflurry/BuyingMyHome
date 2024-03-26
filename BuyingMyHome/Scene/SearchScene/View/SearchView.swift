@@ -22,4 +22,8 @@ final class SearchView: BaseUIView {
 			searchAndHistoryTableView.tableHeaderView = searchController.searchBar
 		}
 	}
+
+	override func configureView() {
+		searchController.searchBar.placeholder = "주소, 건물, 지역을 검색하세요."
+	}
 }

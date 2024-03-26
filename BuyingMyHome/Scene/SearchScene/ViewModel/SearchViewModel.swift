@@ -87,7 +87,7 @@ final class SearchViewModel {
 		switch isPresentSearchController {
 		case .present:
 			guard let item = self.searchResult?.documents[value] else { return }
-			RequestManager().request(.naverGeocoding(address: item.roadAddressName), NaverGeocodingModel.self) { [weak self] result, error in
+			RequestManager().request(.naverGeocoding(address: "\(item.roadAddressName) \(item.placeName)"), NaverGeocodingModel.self) { [weak self] result, error in
 				guard let result else { return }
 				self?.didSelectOutput.value = SearchToMapDataPassingModel(from: result)
 				self?.saveAndDelete(SearchToMapDataPassingModel(from: result))
