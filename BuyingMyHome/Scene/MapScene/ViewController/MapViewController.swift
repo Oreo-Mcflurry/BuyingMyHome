@@ -24,6 +24,7 @@ final class MapViewController: BaseViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setMapView()
+		viewModel.mapView = mapView.naverMap.mapView
 	}
 
 	override func configureView() {
@@ -54,13 +55,22 @@ final class MapViewController: BaseViewController {
 			guard let value else { return }
 			let latlng = NMGLatLng(lat: value.lat, lng: value.lng)
 
-			self?.mapView.configureUI((value.symbol, value.address))
+			if let data = RealmDataManager().findDuplicate(value.lat, value.lng) {
+				self?.mapView.configureUI((data.symbol, data.address, .edit))
+			} else {
+				self?.mapView.configureUI((value.symbol, value.address, .add))
+			}
+
 			self?.viewModel.searchMarker(self!.mapView.naverMap.mapView, latlng: latlng)
 			self?.mapView.isInfoViewAppear(true)
 		}
 
 		viewModel.addEditbuttonOutput.bind { [weak self] _ in
 			let vc = AddEditViewController()
+
+			vc.viewModel.passingValue = self?.viewModel.searchResult
+			vc.viewModel.markerValue = self?.viewModel.markerValue
+			self?.mapView.isInfoViewAppear(false)
 			self?.navigationController?.pushViewController(vc, animated: true)
 		}
 	}
@@ -87,5 +97,9 @@ extension MapViewController: NMFMapViewTouchDelegate {
 	func mapView(_ mapView: NMFMapView, didTap symbol: NMFSymbol) -> Bool {
 		viewModel.tapSymbol(mapView, didTap: symbol)
 		return true
+	}
+
+	func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
+		viewModel.cancelButtonInput.value = ()
 	}
 }

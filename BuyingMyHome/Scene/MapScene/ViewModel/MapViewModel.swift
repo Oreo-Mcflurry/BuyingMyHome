@@ -8,9 +8,14 @@
 import Foundation
 import NMapsMap
 import MapKit
+import RealmSwift
 
 final class MapViewModel {
-	let tapMapOutPut: Observable<(symbol: String, address: String)> = Observable(("", ""))
+
+	private var savedDatas: Results<RealEstateProperty>!
+	private var token : NotificationToken?
+
+	let tapMapOutPut: Observable<(symbol: String, address: String, type: AddEditType)> = Observable(("", "", .add))
 
 	let cancelButtonInput: Observable<Void?> = Observable(nil)
 	let cancelButtonOutput: Observable<Void?> = Observable(nil)
@@ -25,13 +30,26 @@ final class MapViewModel {
 	let searchResultOutput: Observable<SearchToMapDataPassingModel?> = Observable(nil)
 
 	var searchResult: SearchToMapDataPassingModel?
+	var markerValue: RealEstateProperty?
 
 	private let tabMapMarker = NMFMarker()
+	private var savedMapMarkers: [NMFMarker] = []
+	var mapView: NMFMapView?
 
 	init() {
+		savedDatas = RealmDataManager().fetchData(RealEstateProperty.self)
+
+		token = savedDatas.observe { [weak self] change in
+			switch change {
+			case .initial, .update: self?.makeSavedMarker()
+			case .error: break
+			}
+		}
+
 		cancelButtonInput.bind { [weak self] _ in
 			self?.searchResult = nil
-			self?.deleteMarker()
+			self?.markerValue = nil
+			self?.deleteTapMarker()
 			self?.cancelButtonOutput.value = ()
 		}
 
@@ -45,6 +63,7 @@ final class MapViewModel {
 		}
 
 		addEditbuttonInput.bind { [weak self] _ in
+			self?.deleteTapMarker()
 			self?.addEditbuttonOutput.value = ()
 		}
 	}
@@ -53,25 +72,60 @@ final class MapViewModel {
 		if Int(symbol.caption) != nil || symbol.caption.count == 1 { return }
 		tapMapMakeMarker(mapView, latlng: symbol.position) { [weak self] address in
 			if address.isEmpty { return }
-			self?.deleteMarker()
+			self?.deleteTapMarker()
 			self?.makeMarker(mapView, latlng: symbol.position)
-			self?.tapMapOutPut.value = (symbol.caption, address)
-		}
 
+			if let data = RealmDataManager().findDuplicate(symbol.position.lat, symbol.position.lng) {
+				self?.tapMapOutPut.value = (data.symbol, data.address, .edit)
+				self?.markerValue = data
+			} else {
+				self?.tapMapOutPut.value = (symbol.caption, address, .add)
+			}
+
+			self?.searchResult = SearchToMapDataPassingModel(lat: symbol.position.lat, lng: symbol.position.lng, address: address, symbol: symbol.caption)
+		}
+	}
+
+	private func tapMarker(_ marker: NMFMarker) {
+		guard let data = marker.userInfo["data"] as? RealEstateProperty else { return }
+		guard let mapView else { return }
+		searchResult = nil
+		self.markerValue = data
+		self.deleteTapMarker()
+		self.tapMapOutPut.value = (data.symbol, data.address, .edit)
+		self.makeMarker(mapView, latlng: NMGLatLng(lat: data.lat, lng: data.lng))
 	}
 
 	func searchMarker(_ mapView: NMFMapView, latlng: NMGLatLng) {
-		deleteMarker()
+		deleteTapMarker()
 		makeMarker(mapView, latlng: latlng)
 		mapView.moveCamera(NMFCameraUpdate(scrollTo: latlng))
 		mapView.zoomLevel = 15
+	}
+
+	private func makeSavedMarker() {
+		savedMapMarkers.forEach { $0.mapView = nil }
+
+		savedDatas.forEach {
+			let marker = NMFMarker()
+			marker.position = NMGLatLng(lat: $0.lat, lng: $0.lng)
+			marker.iconTintColor = UIColor.red
+			marker.mapView = mapView
+			marker.captionText = $0.symbol
+			marker.userInfo = ["data": $0]
+			marker.touchHandler = { [weak self] _ in
+				self?.tapMarker(marker)
+				return true
+			}
+			savedMapMarkers.append(marker)
+		}
 	}
 
 	private func tapMapMakeMarker(_ mapView: NMFMapView, latlng: NMGLatLng, _ completionHandler: @escaping ((String)->Void)) {
 		requestGecoding(latlng, completionHandler)
 	}
 
-	private func deleteMarker() {
+	private func deleteTapMarker() {
 		tabMapMarker.mapView = nil
 	}
 

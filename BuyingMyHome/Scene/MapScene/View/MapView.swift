@@ -25,7 +25,7 @@ final class MapView: BaseUIView {
 
 		searchButton.snp.makeConstraints {
 			$0.top.trailing.equalTo(self.safeAreaLayoutGuide).offset(-defaultPadding)
-			$0.size.equalTo(40)
+			$0.size.equalTo(50)
 		}
 	}
 
@@ -33,6 +33,9 @@ final class MapView: BaseUIView {
 		naverMap.showCompass = true
 		naverMap.showScaleBar = true
 		searchButton.setImage(UIImage(systemName: "magnifyingglass")?.withTintColor(.black), for: .normal)
+		searchButton.layer.shadowColor = UIColor.black.cgColor
+		searchButton.layer.shadowOpacity = 0.2
+		searchButton.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
 	}
 
 	func isInfoViewAppear(_ value: Bool) {
@@ -47,8 +50,9 @@ final class MapView: BaseUIView {
 		}
 	}
 
-	func configureUI(_ info: (symbol: String, address: String)) {
+	func configureUI(_ info: (symbol: String, address: String, type: AddEditType)) {
 		infoView.addressLabel.text = info.address
 		infoView.symbolLabel.text = info.symbol
+		infoView.addButton.setTitle(info.type.rawValue, for: .normal)
 	}
 }
