@@ -18,22 +18,12 @@ final class TabbarViewController: UITabBarController {
 
 	private func setTabbarViewControllers() {
 		let mapVC = UINavigationController(rootViewController: MapViewController())
-		mapVC.tabBarItem = UITabBarItem(title: "Main", image: UIImage(systemName: "star"), tag: 0)
+		mapVC.tabBarItem = UITabBarItem(title: "Map", image: UIImage(systemName: "map"), selectedImage: UIImage(systemName: "map.fill"))
 
-		let settingVC = UINavigationController(rootViewController: UIHostingController(rootView: SettingView()))
-		settingVC.tabBarItem = UITabBarItem(title: "Setting", image: UIImage(systemName: "star"), tag: 1)
+		let archiveVC = UINavigationController(rootViewController: ArchiveViewController())
+		archiveVC.tabBarItem = UITabBarItem(title: "Archive", image: UIImage(systemName: "star"), selectedImage: UIImage(systemName: "star.fill"))
 
-
-//		let searchVC = UINavigationController(rootViewController: DaumZipCodeViewController())
-//		searchVC.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "star"), tag: 1)
-
-//		let favoriteVC = UINavigationController(rootViewController: FavoriteViewController())
-//		favoriteVC.tabBarItem = UITabBarItem(title: nil, image: .tabPortfolioInactive, selectedImage: .tabPortfolio)
-//
-//		let profileVC = UINavigationController(rootViewController: ProfileViewController())
-//		profileVC.tabBarItem = UITabBarItem(title: nil, image: .tabUserInactive, selectedImage: .tabUser)
-
-		self.viewControllers = [mapVC, settingVC]
+		self.viewControllers = [mapVC, archiveVC]
 	}
 
 	private func configureTabbarDesign() {
@@ -42,6 +32,9 @@ final class TabbarViewController: UITabBarController {
 		tabBar.backgroundColor = .white
 		tabBar.layer.borderColor = UIColor.systemGray5.cgColor
 		tabBar.layer.borderWidth = 1
+		tabBar.layer.shadowColor = UIColor.black.cgColor
+		tabBar.layer.shadowOpacity = 0.2
+		tabBar.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
 	}
 
 	
