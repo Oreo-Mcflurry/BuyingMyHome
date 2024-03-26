@@ -26,4 +26,11 @@ final class SearchToMapDataPassingModel {
 		self.address = data.roadAddressName
 		self.symbol = data.symbol
 	}
+
+	init(lat: Double, lng: Double, address: String, symbol: String) {
+		self.lat = lat
+		self.lng = lng
+		self.address = address
+		self.symbol = symbol
+	}
 }
