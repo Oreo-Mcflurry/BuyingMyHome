@@ -13,7 +13,8 @@
 
 ## 🔗 앱스토어 링크
 
-https://apps.apple.com/kr/app/%EB%82%B4%EC%A7%91%EB%A7%88%EB%A0%A8-%EB%82%B4-%EC%A7%91%EC%9D%84-%EC%9C%84%ED%95%9C-%EB%B6%80%EB%8F%99%EC%82%B0-%EC%9E%84%EC%9E%A5%EA%B8%B0%EB%A1%9D/id6479473879
+[<img width="220" alt="스크린샷 2021-11-19 오후 3 52 02" src="https://user-images.githubusercontent.com/55099365/196023806-5eb7be0f-c7cf-4661-bb39-35a15146c33a.png">](https://apps.apple.com/kr/app/%EB%82%B4%EC%A7%91%EB%A7%88%EB%A0%A8-%EB%82%B4-%EC%A7%91%EC%9D%84-%EC%9C%84%ED%95%9C-%EB%B6%80%EB%8F%99%EC%82%B0-%EC%9E%84%EC%9E%A5%EA%B8%B0%EB%A1%9D/id6479473879)
+
 
 
 ## 🧑‍🤝‍🧑 팀구성
