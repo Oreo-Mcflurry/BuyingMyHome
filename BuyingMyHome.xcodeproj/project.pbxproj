@@ -13,8 +13,6 @@
 		0B019BB02BAF0B1C00E89BB4 /* AroundFacilitie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B019BAF2BAF0B1C00E89BB4 /* AroundFacilitie.swift */; };
 		0B019BB22BB0096A00E89BB4 /* AddEditType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B019BB12BB0096A00E89BB4 /* AddEditType.swift */; };
 		0B019BB82BB0390200E89BB4 /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B019BB72BB0390200E89BB4 /* ArchiveViewController.swift */; };
-		0B019BF82BB29E7300E89BB4 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 0B019BF72BB29E7300E89BB4 /* RxCocoa */; };
-		0B019BFA2BB29E7300E89BB4 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0B019BF92BB29E7300E89BB4 /* RxSwift */; };
 		0B1F83D52B99838500CBF4DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1F83D42B99838500CBF4DE /* AppDelegate.swift */; };
 		0B1F83D72B99838500CBF4DE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1F83D62B99838500CBF4DE /* SceneDelegate.swift */; };
 		0B1F83DE2B99838800CBF4DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B1F83DD2B99838800CBF4DE /* Assets.xcassets */; };
@@ -162,10 +160,8 @@
 				0B1F841A2B9994A300CBF4DE /* Kingfisher in Frameworks */,
 				0B1F84112B99948200CBF4DE /* RealmSwift in Frameworks */,
 				0B1F84142B99949200CBF4DE /* Alamofire in Frameworks */,
-				0B019BF82BB29E7300E89BB4 /* RxCocoa in Frameworks */,
 				0B1F840F2B99948200CBF4DE /* Realm in Frameworks */,
 				0B1F84172B99949B00CBF4DE /* Toast in Frameworks */,
-				0B019BFA2BB29E7300E89BB4 /* RxSwift in Frameworks */,
 				0BA76E5B2BA8084400798E44 /* Tabman in Frameworks */,
 				0B1F840C2B99944E00CBF4DE /* SnapKit in Frameworks */,
 				0B1F841D2B9994B300CBF4DE /* TextFieldEffects in Frameworks */,
@@ -609,8 +605,6 @@
 				0BA76E482BA7CE1500798E44 /* FirebaseCrashlytics */,
 				0BA76E4A2BA7CE1500798E44 /* FirebaseMessaging */,
 				0BA76E5A2BA8084400798E44 /* Tabman */,
-				0B019BF72BB29E7300E89BB4 /* RxCocoa */,
-				0B019BF92BB29E7300E89BB4 /* RxSwift */,
 			);
 			productName = BuyingMyHome;
 			productReference = 0B1F83D12B99838500CBF4DE /* BuyingMyHome.app */;
@@ -649,7 +643,6 @@
 				0B1F841B2B9994B300CBF4DE /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
 				0BA76E452BA7CE1500798E44 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				0BA76E592BA8084400798E44 /* XCRemoteSwiftPackageReference "Tabman" */,
-				0B019BF62BB29E7300E89BB4 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 0B1F83D22B99838500CBF4DE /* Products */;
 			projectDirPath = "";
@@ -943,7 +936,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = Yoo.BuyingMyHome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -980,7 +973,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = Yoo.BuyingMyHome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1017,14 +1010,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		0B019BF62BB29E7300E89BB4 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.6.0;
-			};
-		};
 		0B1F840A2B99944E00CBF4DE /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -1092,16 +1077,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		0B019BF72BB29E7300E89BB4 /* RxCocoa */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0B019BF62BB29E7300E89BB4 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxCocoa;
-		};
-		0B019BF92BB29E7300E89BB4 /* RxSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0B019BF62BB29E7300E89BB4 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxSwift;
-		};
 		0B1F840B2B99944E00CBF4DE /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0B1F840A2B99944E00CBF4DE /* XCRemoteSwiftPackageReference "SnapKit" */;

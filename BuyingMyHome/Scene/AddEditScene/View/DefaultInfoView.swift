@@ -60,6 +60,6 @@ final class DefaultInfoView: BaseUIView {
 		dongTextField.placeholder = "동 (선택)"
 		hoTextField.placeholder = "호수 (선택)"
 
-//		addressTextField.isEnabled = false
+		addressTextField.isEnabled = false
 	}
 }
