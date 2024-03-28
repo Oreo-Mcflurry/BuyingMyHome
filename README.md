@@ -44,16 +44,15 @@
 
 ### 📝 성과 및 결과
 
-- 3/25일부로 출시 되었습니다.
+- 3/25일부로 출시 되었음
 - 추후 업데이트로 리팩토링 및 기능 업데이트를 할 예정
 
 ### 🌠 Trouble Shooting
 
-- 추가하기 / 수정하기 뷰의 클로저 구문에서 메모리 누수가 발생하여 weak를 통해 해결
 - 지도를 클릭할때마다 API Request를 하여 비효율 적인 네트워크 통신이 발생하여 Alamofire의 캐싱 기능으로 해결
 - 개발 초기에 Map의 Gecoding의 API는 Mapkit을, Map의 SDK는 Naver Map을, 검색 API는 Kakao Map 기반으로 검색을 구현하여서 각각 검색과 지도 등의 정보의 간극 발생
 - Geocoding 하는 API를 Naver Map의 API로 통일
-- Naver Map API는 키워드 검색을 지원하지 않아 카카오로 검색 후 주소를 가져와 다시 Naver API를 호출하도록 구현
+  - Naver Map API는 키워드 검색을 지원하지 않아 카카오로 검색 후 주소를 가져와 다시 Naver API를 호출하도록 구현
 
 ### 📋 Post Mortem
 
