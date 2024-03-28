@@ -1,7 +1,7 @@
 
 ![APP Icon](https://github.com/Oreo-Mcflurry/BuyingMyHome/assets/96654328/2c9f1084-20f6-4b80-8320-d39b0336a840)
 
-## [출시] 내집마련 (2024.03 ~ ing)
+## [출시] 내집마련 | 2024.03.08 ~ 2024.03.24 (16일), 업데이트 중
 
 <aside>
 ⭐ 어려운 임장, 이젠 내집마련과 함께
