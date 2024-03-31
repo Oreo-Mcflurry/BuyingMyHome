@@ -24,10 +24,6 @@ final class OnboardingStackViewController: BaseViewController {
 	}
 
 	override func configureLayout() {
-		imageView.snp.makeConstraints {
-			$0.width.height.equalTo(view).multipliedBy(0.6)
-		}
-
 		stackView.snp.makeConstraints {
 			$0.center.equalToSuperview()
 			$0.width.equalToSuperview().inset(50)
@@ -44,6 +40,6 @@ final class OnboardingStackViewController: BaseViewController {
 
 		stackView.axis = .vertical
 		stackView.spacing = 20
-		stackView.alignment = .center
+		stackView.alignment = .fill
 	}
 }
