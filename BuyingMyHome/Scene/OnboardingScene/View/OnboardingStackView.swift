@@ -25,21 +25,23 @@ final class OnboardingStackViewController: BaseViewController {
 
 	override func configureLayout() {
 		stackView.snp.makeConstraints {
-			$0.center.equalToSuperview()
-			$0.width.equalToSuperview().inset(50)
+			$0.edges.equalToSuperview()
 		}
 	}
 
 	override func configureView() {
-		imageView.contentMode = .scaleAspectFill
-		titleLabel.font = .preferredFont(forTextStyle: .title1)
+		stackView.axis = .vertical
+		stackView.alignment = .center
+		stackView.distribution = .equalCentering
+		stackView.spacing = 15
 
-		subTitleLabel.font = .preferredFont(forTextStyle: .body)
+		imageView.contentMode = .scaleAspectFit
+		titleLabel.font = .boldSystemFont(ofSize: 25)
+		titleLabel.textAlignment = .center
+
+		subTitleLabel.font = .systemFont(ofSize: 16)
+		subTitleLabel.textColor = .gray
 		subTitleLabel.textAlignment = .center
 		subTitleLabel.numberOfLines = 0
-
-		stackView.axis = .vertical
-		stackView.spacing = 20
-		stackView.alignment = .fill
 	}
 }

@@ -29,9 +29,16 @@ final class OnboardingViewController: BaseViewController {
 		onboardingView.pageViewController.setViewControllers([first], direction: .forward, animated: true, completion: nil)
 
 		viewList[0].imageView.image = .onboarding1
-		viewList[0].imageView.backgroundColor = .red
-		viewList[0].titleLabel.text = "Test"
-		viewList[0].subTitleLabel.text = "Test"
+		viewList[0].titleLabel.text = "지도를 눌러 시작하기"
+		viewList[0].subTitleLabel.text = "임장 하고 싶은 건물을 선택해 시작해보세요."
+
+		viewList[1].imageView.image = .onboarding2
+		viewList[1].titleLabel.text = "검색하기"
+		viewList[1].subTitleLabel.text = "검색을 통해 찾고 싶은 건물을 손쉽게 검색해보세요."
+
+		viewList[2].imageView.image = .onboarding3
+		viewList[2].titleLabel.text = "임장하기"
+		viewList[2].subTitleLabel.text = "내집마련에서 제공하는 체크리스트들로 임장을 시작해보세요."
 	}
 
 	override func configureBinding() {

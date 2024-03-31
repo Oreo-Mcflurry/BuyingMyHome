@@ -24,6 +24,7 @@ final class OnboardingViewModel {
 	func nextButtonClicked(_ owner: OnboardingViewController) {
 		if currentIndex == 2 {
 			owner.view.window?.rootViewController = TabbarViewController()
+			UserDefaults.standard[.isFirstRun] = true
 		} else {
 			currentPage.onNext(currentIndex+1)
 		}

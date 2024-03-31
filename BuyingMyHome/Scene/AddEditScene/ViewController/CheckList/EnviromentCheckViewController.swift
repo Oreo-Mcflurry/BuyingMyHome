@@ -83,7 +83,7 @@ final class EnviromentCheckViewController: BaseViewController {
 
 	override func configureView() {
 		wasteCheck.setLayout(title: "단지내 쓰레기 처리 시설 여부", type: 0)
-		parkingCheck.setLayout(title: "단지 내 주차장 혼잡도", type: 1)
+		parkingCheck.setLayout(title: "단지 내 주차장 혼잡도", type: 0)
 		communityCheck.setLayout(title: "단지 내 커뮤니티 시설 여부", type: 0)
 		flatCheck.setLayout(title: "단지 내 평지 여부", type: 0)
 		highJobsCheck.setLayout(title: "근처 고급 일자리 여부", type: 1)

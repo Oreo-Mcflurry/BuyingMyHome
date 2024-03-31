@@ -30,7 +30,6 @@ final class OnboardingView: BaseUIView {
 	}
 
 	override func configureView() {
-
 		skipButton.backgroundColor = .accent
 		skipButton.layer.cornerRadius = 10
 
