@@ -25,7 +25,7 @@ enum APIkind {
 		}
 	}
 
-	var getURL: URL {
+	var url: URL {
 		switch self {
 		case .kakaoSearch:
 			return URL(string: "https://dapi.kakao.com/v2/local/search/keyword.json")!
