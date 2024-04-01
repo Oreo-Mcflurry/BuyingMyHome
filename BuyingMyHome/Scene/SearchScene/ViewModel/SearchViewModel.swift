@@ -37,8 +37,11 @@ final class SearchViewModel {
 	let searchControllerPresentInput = PublishSubject<SearchControllerPresent>()
 	let searchControllerPresentOutput = PublishSubject<Void>()
 
-	let searchInput: Observable<String?> = Observable(nil)
-	let searchOutput: Observable<RequestManager.APIError?> = Observable(nil)
+//	let searchInput: Observable<String?> = Observable(nil)
+//	let searchOutput: Observable<RequestManager.APIError?> = Observable(nil)
+
+	let searchInput = PublishSubject<String>()
+	let searchOutput = PublishSubject<RequestManager.APIError?>()
 
 	let pagingInput: Observable<String?> = Observable(nil)
 	let pagingOutput: Observable<Void?> = Observable(nil)
@@ -61,14 +64,13 @@ final class SearchViewModel {
 			owner.searchControllerPresentOutput.onNext(())
 
 			if case .dismiss = owner.isPresentSearchController {
-				owner.searchOutput.value = (nil)
+				owner.searchOutput.onNext(nil)
 			}
 		}.disposed(by: disposeBag)
 
-		searchInput.bind { [weak self] value in
-			guard let value else { return }
-			self?.searchToKakao(searchText: value)
-		}
+		searchInput.bind(with: self) { owner, value in
+			owner.searchToKakao(searchText: value)
+		}.disposed(by: disposeBag)
 
 		pagingInput.bind { [weak self] value in
 			guard let value else { return }
@@ -76,7 +78,7 @@ final class SearchViewModel {
 		}
 
 		didChangeInput.bind { [weak self] _ in
-			self?.searchOutput.value = (nil)
+			self?.searchOutput.onNext(nil)
 			self?.didChangeOutput.value = ()
 		}
 
@@ -123,7 +125,7 @@ final class SearchViewModel {
 		page = 1
 		RequestManager().request(.kakaoSearch(searchText: searchText, page: page), KakaoSearchModel.self) { [weak self] result, error in
 			self?.searchResult = result
-			self?.searchOutput.value = (error)
+			self?.searchOutput.onNext(error)
 		}
 	}
 

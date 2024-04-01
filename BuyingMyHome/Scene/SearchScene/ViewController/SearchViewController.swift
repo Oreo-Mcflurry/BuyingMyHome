@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class SearchViewController: BaseViewController {
 
@@ -21,7 +23,6 @@ final class SearchViewController: BaseViewController {
 		super.viewDidLoad()
 		setTableView()
 		setSearchController()
-		setSeachbar()
 	}
 
 	override func configureView() {
@@ -40,13 +41,13 @@ final class SearchViewController: BaseViewController {
 			owner.searchView.searchAndHistoryTableView.reloadData()
 		}.disposed(by: viewModel.disposeBag)
 
-		viewModel.searchOutput.bind { [weak self] value in
-			if value != nil {
-				self?.showToast(.searchError)
-			} else  {
-				self?.searchView.searchAndHistoryTableView.reloadData()
-			}
-		}
+//		viewModel.searchOutput.bind { [weak self] value in
+//			if value != nil {
+//				self?.showToast(.searchError)
+//			} else  {
+//				self?.searchView.searchAndHistoryTableView.reloadData()
+//			}
+//		}
 
 		viewModel.pagingOutput.bind { [weak self] _ in
 			self?.searchView.searchAndHistoryTableView.reloadData()
@@ -59,22 +60,37 @@ final class SearchViewController: BaseViewController {
 		viewModel.deleteButtonOutput.bind { [weak self] _ in
 			self?.searchView.searchAndHistoryTableView.reloadData()
 		}
+
+		searchView.searchController.searchBar.rx.searchButtonClicked
+			.withLatestFrom(searchView.searchController.searchBar.rx.text.orEmpty)
+			.distinctUntilChanged()
+			.bind(with: self) { owner, value in
+				owner.viewModel.searchInput.onNext(value)
+			}.disposed(by: viewModel.disposeBag)
+
+		viewModel.searchOutput.bind(with: self) { owner, value in
+			if value != nil {
+				owner.showToast(.searchError)
+			} else  {
+				owner.searchView.searchAndHistoryTableView.reloadData()
+			}
+		}.disposed(by: viewModel.disposeBag)
 	}
 }
 
-extension SearchViewController: UISearchBarDelegate {
-	private func setSeachbar() {
-		searchView.searchController.searchBar.delegate = self
-	}
-
-	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-		viewModel.searchInput.value = searchBar.text
-	}
-
-	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-		viewModel.didChangeInput.value = ()
-	}
-}
+//extension SearchViewController: UISearchBarDelegate {
+//	private func setSeachbar() {
+//		searchView.searchController.searchBar.delegate = self
+//	}
+//
+//	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//		viewModel.searchInput.value = searchBar.text
+//	}
+//
+//	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//		viewModel.didChangeInput.value = ()
+//	}
+//}
 
 extension SearchViewController: UISearchControllerDelegate {
 	private func setSearchController() {
