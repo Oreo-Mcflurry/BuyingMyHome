@@ -9,8 +9,8 @@ import UIKit
 
 final class SearchViewController: BaseViewController {
 
-	let searchView = SearchView()
-	let viewModel = SearchViewModel()
+	private let searchView = SearchView()
+	private let viewModel = SearchViewModel()
 	var completionHandler: ((SearchToMapDataPassingModel)->Void)?
 
 	override func loadView() {
@@ -36,9 +36,9 @@ final class SearchViewController: BaseViewController {
 			self?.navigationController?.popViewController(animated: true)
 		}
 
-		viewModel.searchControllerPresentOutput.bind { [weak self] value in
-			self?.searchView.searchAndHistoryTableView.reloadData()
-		}
+		viewModel.searchControllerPresentOutput.bind(with: self) { owner, _ in
+			owner.searchView.searchAndHistoryTableView.reloadData()
+		}.disposed(by: viewModel.disposeBag)
 
 		viewModel.searchOutput.bind { [weak self] value in
 			if value != nil {
@@ -82,11 +82,11 @@ extension SearchViewController: UISearchControllerDelegate {
 	}
 
 	func presentSearchController(_ searchController: UISearchController) {
-		viewModel.searchControllerPresentInput.value = .present
+		viewModel.searchControllerPresentInput.onNext(.present)
 	}
 
 	func didDismissSearchController(_ searchController: UISearchController) {
-		viewModel.searchControllerPresentInput.value = .dismiss
+		viewModel.searchControllerPresentInput.onNext(.dismiss)
 	}
 }
 

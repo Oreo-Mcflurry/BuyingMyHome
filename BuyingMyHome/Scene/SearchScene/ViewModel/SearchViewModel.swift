@@ -8,6 +8,8 @@
 import Foundation
 import UIKit.UICollectionView
 import RealmSwift
+import RxSwift
+import RxCocoa
 
 final class SearchViewModel {
 
@@ -18,6 +20,8 @@ final class SearchViewModel {
 
 	private var page = 1
 	private var realmManager = RealmDataManager()
+	let disposeBag = DisposeBag()
+
 	var searchResult: KakaoSearchModel?
 
 	var searchHistory: Results<SearchHistoryModel>!
@@ -27,8 +31,11 @@ final class SearchViewModel {
 	let didSelectInput: Observable<Int?> = Observable(nil)
 	let didSelectOutput: Observable<SearchToMapDataPassingModel?> = Observable(nil)
 
-	let searchControllerPresentInput: Observable<SearchControllerPresent?> = Observable(nil)
-	let searchControllerPresentOutput: Observable<Void?> = Observable(nil)
+//	let searchControllerPresentInput: Observable<SearchControllerPresent?> = Observable(nil)
+//	let searchControllerPresentOutput: Observable<Void?> = Observable(nil)
+
+	let searchControllerPresentInput = PublishSubject<SearchControllerPresent>()
+	let searchControllerPresentOutput = PublishSubject<Void>()
 
 	let searchInput: Observable<String?> = Observable(nil)
 	let searchOutput: Observable<RequestManager.APIError?> = Observable(nil)
@@ -49,14 +56,14 @@ final class SearchViewModel {
 			self?.didSelectAction(value)
 		}
 
-		searchControllerPresentInput.bind { [weak self] value in
-			guard let value else { return }
-			self?.isPresentSearchController = value
-			self?.searchControllerPresentOutput.value = ()
-			if case .dismiss = self?.isPresentSearchController {
-				self?.searchOutput.value = (nil)
+		searchControllerPresentInput.bind(with: self) { owner, value in
+			owner.isPresentSearchController = value
+			owner.searchControllerPresentOutput.onNext(())
+
+			if case .dismiss = owner.isPresentSearchController {
+				owner.searchOutput.value = (nil)
 			}
-		}
+		}.disposed(by: disposeBag)
 
 		searchInput.bind { [weak self] value in
 			guard let value else { return }
