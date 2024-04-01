@@ -223,6 +223,15 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		0B019C4E2BBA9CEA00E89BB4 /* CheckListScene */ = {
+			isa = PBXGroup;
+			children = (
+				0BA76EA02BADC17600798E44 /* Views */,
+				0BA76E9F2BADBE2200798E44 /* ViewControllers */,
+			);
+			path = CheckListScene;
+			sourceTree = "<group>";
+		};
 		0B1F83C82B99838500CBF4DE = {
 			isa = PBXGroup;
 			children = (
@@ -264,6 +273,7 @@
 		0B1F83EC2B99936A00CBF4DE /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				0B019C4E2BBA9CEA00E89BB4 /* CheckListScene */,
 				0B019BB32BB038E700E89BB4 /* ArchiveScene */,
 				0BA76EA92BADC9C900798E44 /* OnboardingScene */,
 				0BA76E512BA8070500798E44 /* AddEditScene */,
@@ -482,7 +492,6 @@
 		0BA76E522BA8074E00798E44 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0BA76EA02BADC17600798E44 /* CheckSubView */,
 				0BA76E8A2BAC19DF00798E44 /* SubView */,
 				0BA76E572BA807CF00798E44 /* AddEditView.swift */,
 				0BA76E6E2BAA6C5800798E44 /* DefaultInfoView.swift */,
@@ -495,7 +504,6 @@
 		0BA76E532BA8075000798E44 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				0BA76E9F2BADBE2200798E44 /* CheckList */,
 				0BA76E552BA8078700798E44 /* AddEditViewController.swift */,
 			);
 			path = ViewController;
@@ -527,7 +535,7 @@
 			path = SubView;
 			sourceTree = "<group>";
 		};
-		0BA76E9F2BADBE2200798E44 /* CheckList */ = {
+		0BA76E9F2BADBE2200798E44 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				0B019BA92BAEC54600E89BB4 /* BottomSheetViewController.swift */,
@@ -536,17 +544,17 @@
 				0B019BAB2BAEC67100E89BB4 /* SchoolCheckViewController.swift */,
 				0B019BAD2BAEC7A100E89BB4 /* EnviromentCheckViewController.swift */,
 			);
-			path = CheckList;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		0BA76EA02BADC17600798E44 /* CheckSubView */ = {
+		0BA76EA02BADC17600798E44 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				0BA76EA12BADC1AF00798E44 /* SelectCheckView.swift */,
 				0BA76EA32BADC22E00798E44 /* TextCheckView.swift */,
 				0BA76EA52BADC6A200798E44 /* CheckButton.swift */,
 			);
-			path = CheckSubView;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		0BA76EA92BADC9C900798E44 /* OnboardingScene */ = {
