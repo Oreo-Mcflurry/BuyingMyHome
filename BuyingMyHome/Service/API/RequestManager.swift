@@ -18,7 +18,7 @@ final class RequestManager {
 		AF.request(api.url, parameters: api.parameter, headers: api.header) { request in
 			request.cachePolicy = .returnCacheDataElseLoad
 		}.responseDecodable(of: T.self) { response in
-			debugPrint(response)
+//			debugPrint(response)
 			switch response.result {
 			case .success(let success):
 				completionHandler(success, nil)
