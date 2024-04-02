@@ -7,11 +7,17 @@
 
 import UIKit
 import SnapKit
+import RxSwift
 
 final class SearchHistoryTableViewCell: BaseTableViewCell {
 	let addressLabel = UILabel()
 	let deleteButton = UIButton()
 	let dateLabel = UILabel()
+	var disposeBag = DisposeBag()
+
+	override func prepareForReuse() {
+		disposeBag = DisposeBag()
+	}
 
 	override func configureHierarchy() {
 		[addressLabel, deleteButton, dateLabel].forEach { contentView.addSubview($0) }

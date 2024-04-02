@@ -31,26 +31,19 @@ final class SearchViewModel {
 	let didSelectInput: Observable<Int?> = Observable(nil)
 	let didSelectOutput: Observable<SearchToMapDataPassingModel?> = Observable(nil)
 
-//	let searchControllerPresentInput: Observable<SearchControllerPresent?> = Observable(nil)
-//	let searchControllerPresentOutput: Observable<Void?> = Observable(nil)
-
 	let searchControllerPresentInput = PublishSubject<SearchControllerPresent>()
 	let searchControllerPresentOutput = PublishSubject<Void>()
-
-//	let searchInput: Observable<String?> = Observable(nil)
-//	let searchOutput: Observable<RequestManager.APIError?> = Observable(nil)
 
 	let searchInput = PublishSubject<String>()
 	let searchOutput = PublishSubject<RequestManager.APIError?>()
 
-	let pagingInput: Observable<String?> = Observable(nil)
-	let pagingOutput: Observable<Void?> = Observable(nil)
+	let pagingInput = PublishSubject<String>()
 
-	let didChangeInput: Observable<Void?> = Observable(nil)
-	let didChangeOutput: Observable<Void?> = Observable(nil)
+	let didChangeInput = PublishSubject<Void>()
 
-	let deleteButtonInput: Observable<Int?> = Observable(nil)
-	let deleteButtonOutput: Observable<Void?> = Observable(nil)
+	let deleteButtonInput = PublishSubject<Int>()
+
+	let dataChangeOutput = PublishSubject<Void>()
 
 	init() {
 		searchHistory = realmManager.fetchData(SearchHistoryModel.self).sorted(byKeyPath: SearchHistoryModel.sortedProperty, ascending: false)
@@ -72,22 +65,19 @@ final class SearchViewModel {
 			owner.searchToKakao(searchText: value)
 		}.disposed(by: disposeBag)
 
-		pagingInput.bind { [weak self] value in
-			guard let value else { return }
-			self?.pagingSearch(searchText: value)
-		}
+		pagingInput.bind(with: self) { owner, value in
+			owner.pagingSearch(searchText: value)
+		}.disposed(by: disposeBag)
 
-		didChangeInput.bind { [weak self] _ in
-			self?.searchOutput.onNext(nil)
-			self?.didChangeOutput.value = ()
-		}
+		didChangeInput.bind(with: self) { owner, _ in
+			owner.searchOutput.onNext(nil)
+			owner.dataChangeOutput.onNext(Void())
+		}.disposed(by: disposeBag)
 
-		deleteButtonInput.bind { [weak self] value in
-			guard let value else { return }
-			guard let self else { return }
-			self.realmManager.deleteData(self.searchHistory[value])
-			deleteButtonOutput.value = ()
-		}
+		deleteButtonInput.bind(with: self) { owner, value in
+			owner.realmManager.deleteData(owner.searchHistory[value])
+			owner.dataChangeOutput.onNext(Void())
+		}.disposed(by: disposeBag)
 	}
 
 	private func didSelectAction(_ value: Int?) {
@@ -135,7 +125,7 @@ final class SearchViewModel {
 		RequestManager().request(.kakaoSearch(searchText: searchText, page: page), KakaoSearchModel.self) { [weak self] result, error in
 			self?.searchResult?.documents.append(contentsOf: result?.documents ?? [])
 			self?.searchResult?.meta.isEnd = result?.meta.isEnd ?? true
-			self?.pagingOutput.value = ()
+			self?.dataChangeOutput.onNext(Void())
 		}
 	}
 }

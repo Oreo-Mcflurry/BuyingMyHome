@@ -37,29 +37,13 @@ final class SearchViewController: BaseViewController {
 			self?.navigationController?.popViewController(animated: true)
 		}
 
-		viewModel.searchControllerPresentOutput.bind(with: self) { owner, _ in
+		viewModel.dataChangeOutput.bind(with: self) { owner, _ in
 			owner.searchView.searchAndHistoryTableView.reloadData()
 		}.disposed(by: viewModel.disposeBag)
 
-//		viewModel.searchOutput.bind { [weak self] value in
-//			if value != nil {
-//				self?.showToast(.searchError)
-//			} else  {
-//				self?.searchView.searchAndHistoryTableView.reloadData()
-//			}
-//		}
-
-		viewModel.pagingOutput.bind { [weak self] _ in
-			self?.searchView.searchAndHistoryTableView.reloadData()
-		}
-
-		viewModel.didChangeOutput.bind { [weak self] _ in
-			self?.searchView.searchAndHistoryTableView.reloadData()
-		}
-
-		viewModel.deleteButtonOutput.bind { [weak self] _ in
-			self?.searchView.searchAndHistoryTableView.reloadData()
-		}
+		viewModel.searchControllerPresentOutput.bind(with: self) { owner, _ in
+			owner.searchView.searchAndHistoryTableView.reloadData()
+		}.disposed(by: viewModel.disposeBag)
 
 		searchView.searchController.searchBar.rx.searchButtonClicked
 			.withLatestFrom(searchView.searchController.searchBar.rx.text.orEmpty)
@@ -77,20 +61,6 @@ final class SearchViewController: BaseViewController {
 		}.disposed(by: viewModel.disposeBag)
 	}
 }
-
-//extension SearchViewController: UISearchBarDelegate {
-//	private func setSeachbar() {
-//		searchView.searchController.searchBar.delegate = self
-//	}
-//
-//	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//		viewModel.searchInput.value = searchBar.text
-//	}
-//
-//	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//		viewModel.didChangeInput.value = ()
-//	}
-//}
 
 extension SearchViewController: UISearchControllerDelegate {
 	private func setSearchController() {
@@ -129,14 +99,11 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 		case .dismiss:
 			let cell = tableView.dequeueReusableCell(withIdentifier: SearchHistoryTableViewCell.description(), for: indexPath) as! SearchHistoryTableViewCell
 			cell.configurationCell(viewModel.searchHistory[indexPath.row])
-			cell.deleteButton.addTarget(self, action: #selector(deleteButtonCliced), for: .touchUpInside)
-			cell.deleteButton.tag = indexPath.row
+			cell.deleteButton.rx.tap.bind(with: self) { owner, _ in
+				owner.viewModel.deleteButtonInput.onNext(indexPath.row)
+			}.disposed(by: cell.disposeBag)
 			return cell
 		}
-	}
-
-	@objc func deleteButtonCliced(sender: UIButton) {
-		viewModel.deleteButtonInput.value = sender.tag
 	}
 
 	private func setTableView() {
@@ -159,7 +126,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 extension SearchViewController: UITableViewDataSourcePrefetching {
 	func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
 		if let count = viewModel.searchResult?.documents.count, indexPaths.contains(where: { $0.row == count-1 }) {
-			viewModel.pagingInput.value = searchView.searchController.searchBar.text
+			viewModel.pagingInput.onNext(searchView.searchController.searchBar.text!)
 		}
 	}
 }
