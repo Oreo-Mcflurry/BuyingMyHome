@@ -13,6 +13,7 @@ final class SearchViewController: BaseViewController {
 
 	private let searchView = SearchView()
 	private let viewModel = SearchViewModel()
+	private let disposeBag = DisposeBag()
 	var completionHandler: ((SearchToMapDataPassingModel)->Void)?
 
 	override func loadView() {
@@ -22,7 +23,7 @@ final class SearchViewController: BaseViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setTableView()
-		setSearchController()
+//		setSearchController()
 	}
 
 	override func configureView() {
@@ -39,18 +40,18 @@ final class SearchViewController: BaseViewController {
 
 		viewModel.dataChangeOutput.bind(with: self) { owner, _ in
 			owner.searchView.searchAndHistoryTableView.reloadData()
-		}.disposed(by: viewModel.disposeBag)
+		}.disposed(by: disposeBag)
 
 		viewModel.searchControllerPresentOutput.bind(with: self) { owner, _ in
 			owner.searchView.searchAndHistoryTableView.reloadData()
-		}.disposed(by: viewModel.disposeBag)
+		}.disposed(by: disposeBag)
 
 		searchView.searchController.searchBar.rx.searchButtonClicked
 			.withLatestFrom(searchView.searchController.searchBar.rx.text.orEmpty)
 			.distinctUntilChanged()
 			.bind(with: self) { owner, value in
 				owner.viewModel.searchInput.onNext(value)
-			}.disposed(by: viewModel.disposeBag)
+			}.disposed(by: disposeBag)
 
 		viewModel.searchOutput.bind(with: self) { owner, value in
 			if value != nil {
@@ -58,21 +59,15 @@ final class SearchViewController: BaseViewController {
 			} else  {
 				owner.searchView.searchAndHistoryTableView.reloadData()
 			}
-		}.disposed(by: viewModel.disposeBag)
-	}
-}
+		}.disposed(by: disposeBag)
 
-extension SearchViewController: UISearchControllerDelegate {
-	private func setSearchController() {
-		searchView.searchController.delegate = self
-	}
+		searchView.searchController.rx.willPresent.bind(with: self) { owner, _ in
+			owner.viewModel.searchControllerPresentInput.onNext(.present)
+		}.disposed(by: disposeBag)
 
-	func presentSearchController(_ searchController: UISearchController) {
-		viewModel.searchControllerPresentInput.onNext(.present)
-	}
-
-	func didDismissSearchController(_ searchController: UISearchController) {
-		viewModel.searchControllerPresentInput.onNext(.dismiss)
+		searchView.searchController.rx.willDismiss.bind(with: self) { owner, _ in
+			owner.viewModel.searchControllerPresentInput.onNext(.dismiss)
+		}.disposed(by: disposeBag)
 	}
 }
 

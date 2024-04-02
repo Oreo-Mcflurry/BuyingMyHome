@@ -17,6 +17,8 @@
 		0B019C3E2BB552A200E89BB4 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0B019C3D2BB552A200E89BB4 /* RxSwift */; };
 		0B019C412BB552F800E89BB4 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B019C402BB552F800E89BB4 /* OnboardingViewModel.swift */; };
 		0B019C432BB5598200E89BB4 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B019C422BB5598200E89BB4 /* OnboardingView.swift */; };
+		0B019C512BBBE91300E89BB4 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 0B019C502BBBE91300E89BB4 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		0B019C532BBBE91300E89BB4 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 0B019C522BBBE91300E89BB4 /* FirebaseCrashlytics */; };
 		0B1F83D52B99838500CBF4DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1F83D42B99838500CBF4DE /* AppDelegate.swift */; };
 		0B1F83D72B99838500CBF4DE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1F83D62B99838500CBF4DE /* SceneDelegate.swift */; };
 		0B1F83DE2B99838800CBF4DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B1F83DD2B99838800CBF4DE /* Assets.xcassets */; };
@@ -54,9 +56,6 @@
 		0B7EC8EB2BA747400076F873 /* SearchHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7EC8EA2BA747400076F873 /* SearchHistory.swift */; };
 		0B7EC8EE2BA749460076F873 /* RealmDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7EC8ED2BA749460076F873 /* RealmDataManager.swift */; };
 		0BA76E442BA754C000798E44 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA76E432BA754C000798E44 /* DateFormatter+Extension.swift */; };
-		0BA76E472BA7CE1500798E44 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 0BA76E462BA7CE1500798E44 /* FirebaseAnalyticsWithoutAdIdSupport */; };
-		0BA76E492BA7CE1500798E44 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 0BA76E482BA7CE1500798E44 /* FirebaseCrashlytics */; };
-		0BA76E4B2BA7CE1500798E44 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 0BA76E4A2BA7CE1500798E44 /* FirebaseMessaging */; };
 		0BA76E502BA7CF7B00798E44 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BA76E4F2BA7CF7B00798E44 /* GoogleService-Info.plist */; };
 		0BA76E562BA8078700798E44 /* AddEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA76E552BA8078700798E44 /* AddEditViewController.swift */; };
 		0BA76E582BA807CF00798E44 /* AddEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA76E572BA807CF00798E44 /* AddEditView.swift */; };
@@ -170,12 +169,11 @@
 				0B1F840F2B99948200CBF4DE /* Realm in Frameworks */,
 				0B1F84172B99949B00CBF4DE /* Toast in Frameworks */,
 				0B019C3E2BB552A200E89BB4 /* RxSwift in Frameworks */,
+				0B019C512BBBE91300E89BB4 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				0BA76E5B2BA8084400798E44 /* Tabman in Frameworks */,
+				0B019C532BBBE91300E89BB4 /* FirebaseCrashlytics in Frameworks */,
 				0B1F840C2B99944E00CBF4DE /* SnapKit in Frameworks */,
 				0B1F841D2B9994B300CBF4DE /* TextFieldEffects in Frameworks */,
-				0BA76E492BA7CE1500798E44 /* FirebaseCrashlytics in Frameworks */,
-				0BA76E472BA7CE1500798E44 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
-				0BA76E4B2BA7CE1500798E44 /* FirebaseMessaging in Frameworks */,
 				1D5E1270A0ABDD760C1A7D18 /* Pods_BuyingMyHome.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -627,12 +625,11 @@
 				0B1F84162B99949B00CBF4DE /* Toast */,
 				0B1F84192B9994A300CBF4DE /* Kingfisher */,
 				0B1F841C2B9994B300CBF4DE /* TextFieldEffects */,
-				0BA76E462BA7CE1500798E44 /* FirebaseAnalyticsWithoutAdIdSupport */,
-				0BA76E482BA7CE1500798E44 /* FirebaseCrashlytics */,
-				0BA76E4A2BA7CE1500798E44 /* FirebaseMessaging */,
 				0BA76E5A2BA8084400798E44 /* Tabman */,
 				0B019C3B2BB552A200E89BB4 /* RxCocoa */,
 				0B019C3D2BB552A200E89BB4 /* RxSwift */,
+				0B019C502BBBE91300E89BB4 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				0B019C522BBBE91300E89BB4 /* FirebaseCrashlytics */,
 			);
 			productName = BuyingMyHome;
 			productReference = 0B1F83D12B99838500CBF4DE /* BuyingMyHome.app */;
@@ -669,9 +666,9 @@
 				0B1F84152B99949B00CBF4DE /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				0B1F84182B9994A300CBF4DE /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				0B1F841B2B9994B300CBF4DE /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
-				0BA76E452BA7CE1500798E44 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				0BA76E592BA8084400798E44 /* XCRemoteSwiftPackageReference "Tabman" */,
 				0B019C3A2BB552A200E89BB4 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				0B019C4F2BBBE91300E89BB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 0B1F83D22B99838500CBF4DE /* Products */;
 			projectDirPath = "";
@@ -1049,6 +1046,14 @@
 				minimumVersion = 6.6.0;
 			};
 		};
+		0B019C4F2BBBE91300E89BB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.23.1;
+			};
+		};
 		0B1F840A2B99944E00CBF4DE /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -1097,14 +1102,6 @@
 				minimumVersion = 1.7.0;
 			};
 		};
-		0BA76E452BA7CE1500798E44 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.22.1;
-			};
-		};
 		0BA76E592BA8084400798E44 /* XCRemoteSwiftPackageReference "Tabman" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/uias/Tabman.git";
@@ -1125,6 +1122,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0B019C3A2BB552A200E89BB4 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		0B019C502BBBE91300E89BB4 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0B019C4F2BBBE91300E89BB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		0B019C522BBBE91300E89BB4 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0B019C4F2BBBE91300E89BB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
 		};
 		0B1F840B2B99944E00CBF4DE /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1160,21 +1167,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0B1F841B2B9994B300CBF4DE /* XCRemoteSwiftPackageReference "TextFieldEffects" */;
 			productName = TextFieldEffects;
-		};
-		0BA76E462BA7CE1500798E44 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0BA76E452BA7CE1500798E44 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalyticsWithoutAdIdSupport;
-		};
-		0BA76E482BA7CE1500798E44 /* FirebaseCrashlytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0BA76E452BA7CE1500798E44 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseCrashlytics;
-		};
-		0BA76E4A2BA7CE1500798E44 /* FirebaseMessaging */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0BA76E452BA7CE1500798E44 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseMessaging;
 		};
 		0BA76E5A2BA8084400798E44 /* Tabman */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -20,7 +20,7 @@ final class SearchViewModel {
 
 	private var page = 1
 	private var realmManager = RealmDataManager()
-	let disposeBag = DisposeBag()
+	private let disposeBag = DisposeBag()
 
 	var searchResult: KakaoSearchModel?
 
