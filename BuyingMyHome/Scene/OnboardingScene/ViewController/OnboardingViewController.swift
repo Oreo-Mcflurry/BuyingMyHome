@@ -42,12 +42,16 @@ final class OnboardingViewController: BaseViewController {
 	}
 
 	override func configureBinding() {
-		onboardingView.skipButton.rx.tap.bind(with: self) { owner, _ in
-			owner.viewModel.nextButtonClicked(owner)
 
-		}.disposed(by: disposeBag)
+		let input = OnboardingViewModel.Input(inputTap: onboardingView.skipButton.rx.tap)
 
-		viewModel.currentPage.bind(with: self) { owner, value in
+		let output = viewModel.transform(input: input)
+
+		output.outputTap.drive(with: self) { owner, value in
+			if value == 3 {
+				owner.view.window?.rootViewController = TabbarViewController()
+				return
+			}
 			owner.onboardingView.configureTitle(value)
 			owner.onboardingView.pageViewController.setViewControllers([owner.viewList[value]], direction: .forward, animated: true)
 		}.disposed(by: disposeBag)
@@ -57,19 +61,18 @@ final class OnboardingViewController: BaseViewController {
 extension OnboardingViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
 	func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
 		guard let currentIndex = viewList.firstIndex(of: viewController as! OnboardingStackViewController) else { return nil }
-		viewModel.currentPage.onNext(currentIndex)
 		return currentIndex <= 0 ? nil : viewList[currentIndex - 1]
 	}
 
 	func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
 		guard let currentIndex = viewList.firstIndex(of: viewController as! OnboardingStackViewController) else { return nil }
-		viewModel.currentPage.onNext(currentIndex)
 		return currentIndex >= viewList.count - 1 ? nil : viewList[currentIndex + 1]
 	}
 
 	private func setPageView() {
 		onboardingView.pageViewController.delegate = self
 		onboardingView.pageViewController.dataSource = self
+		onboardingView.pageViewController.view.isUserInteractionEnabled = false
 	}
 
 	func presentationCount(for pageViewController: UIPageViewController) -> Int {
@@ -77,6 +80,6 @@ extension OnboardingViewController: UIPageViewControllerDelegate, UIPageViewCont
 	}
 
 	func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-		return viewModel.currentIndex
+		return viewModel.currentPage
 	}
 }

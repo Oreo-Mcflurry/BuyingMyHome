@@ -20,6 +20,7 @@
 		0B019C512BBBE91300E89BB4 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 0B019C502BBBE91300E89BB4 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		0B019C532BBBE91300E89BB4 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 0B019C522BBBE91300E89BB4 /* FirebaseCrashlytics */; };
 		0B019C582BBBF43B00E89BB4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B019C572BBBF43B00E89BB4 /* GoogleService-Info.plist */; };
+		0B019C692BBD78F300E89BB4 /* InputOutputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B019C682BBD78F300E89BB4 /* InputOutputViewModel.swift */; };
 		0B1F83D52B99838500CBF4DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1F83D42B99838500CBF4DE /* AppDelegate.swift */; };
 		0B1F83D72B99838500CBF4DE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1F83D62B99838500CBF4DE /* SceneDelegate.swift */; };
 		0B1F83DE2B99838800CBF4DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B1F83DD2B99838800CBF4DE /* Assets.xcassets */; };
@@ -96,6 +97,7 @@
 		0B019C402BB552F800E89BB4 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		0B019C422BB5598200E89BB4 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		0B019C572BBBF43B00E89BB4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		0B019C682BBD78F300E89BB4 /* InputOutputViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputOutputViewModel.swift; sourceTree = "<group>"; };
 		0B1F83D12B99838500CBF4DE /* BuyingMyHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuyingMyHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B1F83D42B99838500CBF4DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0B1F83D62B99838500CBF4DE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -230,6 +232,14 @@
 			path = CheckListScene;
 			sourceTree = "<group>";
 		};
+		0B019C672BBD78E700E89BB4 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				0B019C682BBD78F300E89BB4 /* InputOutputViewModel.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		0B1F83C82B99838500CBF4DE = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				0B019C572BBBF43B00E89BB4 /* GoogleService-Info.plist */,
+				0B019C672BBD78E700E89BB4 /* Protocol */,
 				0B7EC8E62BA714910076F873 /* Enum */,
 				0B7EC8DB2BA426230076F873 /* Font */,
 				0B7EC8D12BA411400076F873 /* Extension */,
@@ -804,6 +815,7 @@
 				0B7EC8EE2BA749460076F873 /* RealmDataManager.swift in Sources */,
 				0BA76E582BA807CF00798E44 /* AddEditView.swift in Sources */,
 				0BA76E962BADAD7700798E44 /* CheckListType.swift in Sources */,
+				0B019C692BBD78F300E89BB4 /* InputOutputViewModel.swift in Sources */,
 				0BA76E832BAAC51300798E44 /* AddEditHoshiTextField.swift in Sources */,
 				0BA76E732BAA6C7400798E44 /* ImageMemoView.swift in Sources */,
 				0B7EC8E52BA714390076F873 /* KakaoSearchModel.swift in Sources */,

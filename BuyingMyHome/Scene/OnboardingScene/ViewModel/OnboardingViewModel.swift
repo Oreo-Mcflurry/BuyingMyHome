@@ -9,24 +9,31 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class OnboardingViewModel {
+final class OnboardingViewModel: InputOutputViewModelProtocol {
 
-	let currentPage = BehaviorSubject(value: 0)
+	var currentPage = 0
 
-	var currentIndex: Int {
-		do {
-			return try currentPage.value()
-		} catch {
-			return 0
-		}
+	struct Input {
+		let inputTap: ControlEvent<Void>
 	}
 
-	func nextButtonClicked(_ owner: OnboardingViewController) {
-		if currentIndex == 2 {
-			owner.view.window?.rootViewController = TabbarViewController()
-			UserDefaults.standard[.isFirstRun] = true
-		} else {
-			currentPage.onNext(currentIndex+1)
-		}
+	struct Output {
+		let outputTap: Driver<Int>
+	}
+
+	var disposeBag = DisposeBag()
+
+	func transform(input: Input) -> Output {
+		let outputTap = BehaviorRelay(value: currentPage)
+
+		input.inputTap.bind(with: self) { owner, _ in
+			owner.currentPage += 1
+			if owner.currentPage == 3 {
+				UserDefaults.standard[.isFirstRun] = true
+			}
+			outputTap.accept(owner.currentPage)
+		}.disposed(by: disposeBag)
+
+		return Output(outputTap: outputTap.asDriver())
 	}
 }
