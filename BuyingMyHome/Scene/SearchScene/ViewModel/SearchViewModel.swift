@@ -34,8 +34,8 @@ final class SearchViewModel {
 	let searchControllerPresentInput = PublishSubject<SearchControllerPresent>()
 	let searchControllerPresentOutput = PublishSubject<Void>()
 
-	let searchInput = PublishSubject<String>()
-	let searchOutput = PublishSubject<RequestManager.APIError?>()
+	let searchApiRequestInput = PublishSubject<String>()
+	let searchApiRequestOutput = PublishSubject<RequestManager.APIError?>()
 
 	let pagingInput = PublishSubject<String>()
 
@@ -57,11 +57,11 @@ final class SearchViewModel {
 			owner.searchControllerPresentOutput.onNext(())
 
 			if case .dismiss = owner.isPresentSearchController {
-				owner.searchOutput.onNext(nil)
+				owner.searchApiRequestOutput.onNext(nil)
 			}
 		}.disposed(by: disposeBag)
 
-		searchInput.bind(with: self) { owner, value in
+		searchApiRequestInput.bind(with: self) { owner, value in
 			owner.searchToKakao(searchText: value)
 		}.disposed(by: disposeBag)
 
@@ -70,7 +70,7 @@ final class SearchViewModel {
 		}.disposed(by: disposeBag)
 
 		didChangeInput.bind(with: self) { owner, _ in
-			owner.searchOutput.onNext(nil)
+			owner.searchApiRequestOutput.onNext(nil)
 			owner.dataChangeOutput.onNext(Void())
 		}.disposed(by: disposeBag)
 
@@ -115,7 +115,7 @@ final class SearchViewModel {
 		page = 1
 		RequestManager().request(.kakaoSearch(searchText: searchText, page: page), KakaoSearchModel.self) { [weak self] result, error in
 			self?.searchResult = result
-			self?.searchOutput.onNext(error)
+			self?.searchApiRequestOutput.onNext(error)
 		}
 	}
 

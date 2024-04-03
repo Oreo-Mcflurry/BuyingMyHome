@@ -14,7 +14,7 @@ final class SearchViewController: BaseViewController {
 	private let searchView = SearchView()
 	private let viewModel = SearchViewModel()
 	private let disposeBag = DisposeBag()
-	var completionHandler: ((SearchToMapDataPassingModel)->Void)?
+	var didSelectcompletionHandler: ((SearchToMapDataPassingModel)->Void)?
 
 	override func loadView() {
 		self.view = searchView
@@ -23,7 +23,6 @@ final class SearchViewController: BaseViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setTableView()
-//		setSearchController()
 	}
 
 	override func configureView() {
@@ -34,7 +33,7 @@ final class SearchViewController: BaseViewController {
 	override func configureBinding() {
 		viewModel.didSelectOutput.bind { [weak self] value in
 			guard let value else { return }
-			self?.completionHandler?(value)
+			self?.didSelectcompletionHandler?(value)
 			self?.navigationController?.popViewController(animated: true)
 		}
 
@@ -50,10 +49,10 @@ final class SearchViewController: BaseViewController {
 			.withLatestFrom(searchView.searchController.searchBar.rx.text.orEmpty)
 			.distinctUntilChanged()
 			.bind(with: self) { owner, value in
-				owner.viewModel.searchInput.onNext(value)
+				owner.viewModel.searchApiRequestInput.onNext(value)
 			}.disposed(by: disposeBag)
 
-		viewModel.searchOutput.bind(with: self) { owner, value in
+		viewModel.searchApiRequestOutput.bind(with: self) { owner, value in
 			if value != nil {
 				owner.showToast(.searchError)
 			} else  {

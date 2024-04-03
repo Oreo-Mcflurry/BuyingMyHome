@@ -19,6 +19,7 @@
 		0B019C432BB5598200E89BB4 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B019C422BB5598200E89BB4 /* OnboardingView.swift */; };
 		0B019C512BBBE91300E89BB4 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 0B019C502BBBE91300E89BB4 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		0B019C532BBBE91300E89BB4 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 0B019C522BBBE91300E89BB4 /* FirebaseCrashlytics */; };
+		0B019C582BBBF43B00E89BB4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B019C572BBBF43B00E89BB4 /* GoogleService-Info.plist */; };
 		0B1F83D52B99838500CBF4DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1F83D42B99838500CBF4DE /* AppDelegate.swift */; };
 		0B1F83D72B99838500CBF4DE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1F83D62B99838500CBF4DE /* SceneDelegate.swift */; };
 		0B1F83DE2B99838800CBF4DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B1F83DD2B99838800CBF4DE /* Assets.xcassets */; };
@@ -56,7 +57,6 @@
 		0B7EC8EB2BA747400076F873 /* SearchHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7EC8EA2BA747400076F873 /* SearchHistory.swift */; };
 		0B7EC8EE2BA749460076F873 /* RealmDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7EC8ED2BA749460076F873 /* RealmDataManager.swift */; };
 		0BA76E442BA754C000798E44 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA76E432BA754C000798E44 /* DateFormatter+Extension.swift */; };
-		0BA76E502BA7CF7B00798E44 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BA76E4F2BA7CF7B00798E44 /* GoogleService-Info.plist */; };
 		0BA76E562BA8078700798E44 /* AddEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA76E552BA8078700798E44 /* AddEditViewController.swift */; };
 		0BA76E582BA807CF00798E44 /* AddEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA76E572BA807CF00798E44 /* AddEditView.swift */; };
 		0BA76E5B2BA8084400798E44 /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = 0BA76E5A2BA8084400798E44 /* Tabman */; };
@@ -95,6 +95,7 @@
 		0B019BB92BB115F700E89BB4 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		0B019C402BB552F800E89BB4 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		0B019C422BB5598200E89BB4 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		0B019C572BBBF43B00E89BB4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		0B1F83D12B99838500CBF4DE /* BuyingMyHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuyingMyHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B1F83D42B99838500CBF4DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0B1F83D62B99838500CBF4DE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -127,7 +128,6 @@
 		0B7EC8EA2BA747400076F873 /* SearchHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistory.swift; sourceTree = "<group>"; };
 		0B7EC8ED2BA749460076F873 /* RealmDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDataManager.swift; sourceTree = "<group>"; };
 		0BA76E432BA754C000798E44 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
-		0BA76E4F2BA7CF7B00798E44 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0BA76E552BA8078700798E44 /* AddEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditViewController.swift; sourceTree = "<group>"; };
 		0BA76E572BA807CF00798E44 /* AddEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditView.swift; sourceTree = "<group>"; };
 		0BA76E5E2BA9165F00798E44 /* NaverReverseGeocodingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverReverseGeocodingModel.swift; sourceTree = "<group>"; };
@@ -252,7 +252,7 @@
 		0B1F83D32B99838500CBF4DE /* BuyingMyHome */ = {
 			isa = PBXGroup;
 			children = (
-				0BA76E4F2BA7CF7B00798E44 /* GoogleService-Info.plist */,
+				0B019C572BBBF43B00E89BB4 /* GoogleService-Info.plist */,
 				0B7EC8E62BA714910076F873 /* Enum */,
 				0B7EC8DB2BA426230076F873 /* Font */,
 				0B7EC8D12BA411400076F873 /* Extension */,
@@ -611,6 +611,7 @@
 				0B1F83CE2B99838500CBF4DE /* Frameworks */,
 				0B1F83CF2B99838500CBF4DE /* Resources */,
 				AE923669C161BE6A96E09ECA /* [CP] Embed Pods Frameworks */,
+				0B019C542BBBF38700E89BB4 /* Firebase Crashtyics */,
 			);
 			buildRules = (
 			);
@@ -686,7 +687,7 @@
 			files = (
 				0B1F83DE2B99838800CBF4DE /* Assets.xcassets in Resources */,
 				0B7EC8DD2BA4264E0076F873 /* JalnanGothic.otf in Resources */,
-				0BA76E502BA7CF7B00798E44 /* GoogleService-Info.plist in Resources */,
+				0B019C582BBBF43B00E89BB4 /* GoogleService-Info.plist in Resources */,
 				0B1F83E92B99860C00CBF4DE /* .gitignore in Resources */,
 				0B1F83E12B99838800CBF4DE /* Base in Resources */,
 			);
@@ -695,6 +696,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0B019C542BBBF38700E89BB4 /* Firebase Crashtyics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Firebase Crashtyics";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%Build/*}SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
 		49CE677B5161256194FC7A71 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -731,7 +750,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BuyingMyHome/Pods-BuyingMyHome-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BuyingMyHome/Pods-BuyingMyHome-frameworks.sh\"\n\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

@@ -45,7 +45,7 @@ final class MapViewController: BaseViewController {
 
 		viewModel.searchButtonOutput.bind { [weak self] _ in
 			let vc = SearchViewController()
-			vc.completionHandler = { value in
+			vc.didSelectcompletionHandler = { value in
 				self?.viewModel.searchResultInput.value = value
 			}
 			self?.navigationController?.pushViewController(vc, animated: true)
