@@ -42,11 +42,6 @@
 - Firebase Analytics 및 Crashlytics를 활용하여 앱의 성능 및 안정성 향상
 - TestFlight를 이용하여 베타테스트 경험
 
-### 📝 성과 및 결과
-
-- 3/25일부로 출시 되었음
-- 추후 업데이트로 리팩토링 및 기능 업데이트를 할 예정
-
 ### 🌠 Trouble Shooting
 
 - 지도를 클릭할때마다 API Request를 하여 비효율 적인 네트워크 통신이 발생하여 Alamofire의 캐싱 기능으로 해결
