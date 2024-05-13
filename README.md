@@ -33,8 +33,6 @@
 - Input / Output Pattern
 - Realm
 - Firebase Analytics / Crashtics
-- Alamofire
-- Tabman
 - TestFlight
 
 ### 👏 해당 기술을 사용하며 이룬 성과
