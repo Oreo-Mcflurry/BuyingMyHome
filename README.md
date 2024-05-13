@@ -10,7 +10,10 @@
 
 </aside>
 
-![스크린샷 2024-03-24 21 30 36](https://github.com/Oreo-Mcflurry/BuyingMyHome/assets/96654328/1a18ee4b-d02d-498c-8718-be786f05c475)
+
+![myhome](https://github.com/Oreo-Mcflurry/BuyingMyHome/assets/96654328/2ea58ad0-cf39-44b6-a7b6-8bbeadd0a16a)
+
+
 
 ## 🔗 앱스토어 링크
 
