@@ -11,7 +11,7 @@
 </aside>
 
 
-![myhome](https://github.com/Oreo-Mcflurry/BuyingMyHome/assets/96654328/2ea58ad0-cf39-44b6-a7b6-8bbeadd0a16a)
+![homeddd](https://github.com/Oreo-Mcflurry/BuyingMyHome/assets/96654328/125fd327-0b0a-46fa-aef7-65df7f098e0e)
 
 
 
@@ -21,46 +21,109 @@
 
 
 
-### 🧑‍🤝‍🧑 팀구성
+### 🧑‍🤝‍🧑 팀, 프로젝트 구성
 
 - 1인 개발
+- iOS 16.0+
 
 ### 🔨 기술 스택 및 사용한 라이브러리
 
 - UIKit / SnapKit
 - MVVM
 - Observable Pattern
-- Input / Output Pattern
 - Realm
 - Firebase Analytics / Crashtics
 - TestFlight
+
+### 🥕 기능
+
+- 네이버 지도에서 주소와 건물의 정보 가져오기
+- 임장 체크리스트 저장
+- 건물 검색
 
 ### 👏 해당 기술을 사용하며 이룬 성과
 
 - Realm Reopository Pattern과 Generic을 통한 모듈화
 - Alamofrie와 Generic을 통한 모듈화
-- Tabman을 활용하여 UI구현 시간 단축
 - Firebase Analytics 및 Crashlytics를 활용하여 앱의 성능 및 안정성 향상
 - TestFlight를 이용하여 베타테스트 경험
 
 ### 🌠 Trouble Shooting
 
-- 지도를 클릭할때마다 API Request를 하여 비효율 적인 네트워크 통신이 발생하여 Alamofire의 캐싱 기능으로 해결
-- 개발 초기에 Map의 Gecoding의 API는 Mapkit을, Map의 SDK는 Naver Map을, 검색 API는 Kakao Map 기반으로 검색을 구현하여서 각각 검색과 지도 등의 정보의 간극 발생
-- Geocoding 하는 API를 Naver Map의 API로 통일
-  - Naver Map API는 키워드 검색을 지원하지 않아 카카오로 검색 후 주소를 가져와 다시 Naver API를 호출하도록 구현
+#### 1. 지도를 클릭할때마다 API Request를 하여 비효율 적인 네트워크 통신이 발생하여 Alamofire의 캐싱 기능으로 해결
 
-### 📋 Post Mortem
+~~~swift
+func request<T: Decodable>(_ api: APIkind, _ type: T.Type, completionHandler: @escaping (T?, APIError?) -> ()) {
+    AF.request(api.url, parameters: api.parameter, headers: api.header) { request in
+        // cachePolicy 설정
+        request.cachePolicy = .returnCacheDataElseLoad
+    }.responseDecodable(of: T.self) { response in
+        debugPrint(response)
+        switch response.result {
+        case .success(let success):
+            completionHandler(success, nil)
+            return
+        case .failure(_):
+            completionHandler(nil, .error)
+        }
+    }
+}
+~~~
 
-- 리젝 사유
-  - 검색기능을 사용해서 검색하였는데 아무것도 안나왔다는 리젝 사유를 받음
-  - Naver Map특성상 외국의 주소는 나오지 않아 몇개의 한국의 주소를 샘플로 보내어 대응
-- 업데이트 사항
-  - 카메라나 앨범에서 사진을 선택하여 같이 저장할 수 있게 만들 예정
-  - RxSwift를 배워 리팩토링을 해볼 예정
-  - 아카이브 탭에서 삭제 기능을 구현 할 예정
-  - 폴더 기능을 구현 할 예정
-  - 온보딩 뷰를 구현 할 예정
-- 아쉬웠던 점
-  - 개발 초기부터 MVP의 단위를 제대로 정하지 못해 우왕자왕하였던점
-  - 개발 초기에 Map의 Gecoding은 Mapkit을, Map은 Naver Map을, 검색은 Kakao 기반으로 검색을 구현하여서 각각 검색과 지도 등의 정보의 간극이 생겼습니다. 이를 초기 / 기획 단계에서 검증하지 않았던 점
+#### 2. Realm으로 저장한 검색 기록과, Request로 받아오는 데이터의 모델이 달라서, 역값전달에 문제가 생겼는데, 데이터를 전달할 수 있는 공통의 Model을 만들어서 해결
+~~~swift
+final class SearchToMapDataPassingModel {
+    let lat: Double
+    let lng: Double
+    let address: String
+    let symbol: String
+
+    init(from data: NaverGeocodingModel) {
+        self.lat = data.lat
+        self.lng = data.lng
+        self.address = data.address
+        self.symbol = data.symbol
+    }
+
+    init(from data: SearchHistoryModel) {
+        self.lat = data.latitude
+        self.lng = data.longitude
+        self.address = data.roadAddressName
+        self.symbol = data.symbol
+    }
+
+    init(lat: Double, lng: Double, address: String, symbol: String) {
+        self.lat = lat
+        self.lng = lng
+        self.address = address
+        self.symbol = symbol
+    }
+}
+~~~
+
+### 🗂️ 폴더 구조
+~~~
+📦BuyingMyHome
+ ┣ 📂Enum
+ ┣ 📂Extension
+ ┣ 📂Font
+ ┣ 📂Model
+ ┣ 📂Protocol
+ ┣ 📂Scene
+ ┃ ┣ 📂AddEditScene
+ ┃ ┣ 📂ArchiveScene
+ ┃ ┣ 📂Base
+ ┃ ┣ 📂CheckListScene
+ ┃ ┣ 📂MapScene
+ ┃ ┣ 📂OnboardingScene
+ ┃ ┣ 📂SearchScene
+ ┃ ┗ 📂TabScene
+ ┗ 📂Service
+~~~
+
+| 뷰 | 이미지 |
+| --- | --- |
+| 메인 뷰 | <img src="https://github.com/Oreo-Mcflurry/BuyingMyHome/assets/96654328/9b8ce277-f4e7-4cbc-a4f2-4c7abec656ea" width="188" height="408"> |
+| 검색 뷰 | <img src="https://github.com/Oreo-Mcflurry/BuyingMyHome/assets/96654328/892673ab-c8d9-474c-9c3b-0a3cf821ee6e" width="188" height="408"> |
+| 보관함 뷰 | <img src="https://github.com/Oreo-Mcflurry/BuyingMyHome/assets/96654328/12ad34b1-506c-4d2a-8db5-ae5e608e67ce" width="188" height="408"> |
+
