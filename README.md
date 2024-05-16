@@ -44,7 +44,31 @@
 ### 👏 해당 기술을 사용하며 이룬 성과
 
 - Realm Reopository Pattern과 Generic을 통한 모듈화
-- Alamofrie와 Generic을 통한 모듈화
+
+~~~swift
+final class RealmDataManager {
+    
+    private var realm: Realm = {
+        return try! Realm()
+    }()
+    
+    func fetchData<T: Object>(_ type: T.Type) -> Results<T> {
+        return realm.objects(T.self)
+    }
+    
+    func saveData<T: Object>(_ data: T) {
+        do {
+            try realm.write {
+                realm.add(data)
+            }
+        } catch {
+            print(error)
+        }
+    }
+    // ....
+}
+~~~
+
 - Firebase Analytics 및 Crashlytics를 활용하여 앱의 성능 및 안정성 향상
 - TestFlight를 이용하여 베타테스트 경험
 
