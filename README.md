@@ -37,8 +37,8 @@
 
 ### 🥕 기능
 
-- 네이버 지도에서 주소와 건물의 정보 가져오기
-- 임장 체크리스트 저장
+- Map Annotation 기반 건물 조회 기능
+- 임장 체크리스트 작성 / 저장
 - 건물 검색
 
 ### 👏 해당 기술을 사용하며 이룬 성과
@@ -74,7 +74,7 @@ final class RealmDataManager {
 
 ### 🌠 Trouble Shooting
 
-#### 1. 지도를 클릭할때마다 API Request를 하여 비효율 적인 네트워크 통신이 발생하여 Alamofire의 캐싱 기능으로 해결
+#### 1. Map Annotation을 터치할때마다 요청하여 중복되는 API 요청이 자주 발생될 우려, Alamofire의 Session cachePolicy를 returnCacheDataElseLoad로 설정하여 캐싱의 우선순위를 높여 반복되는 요청 처리
 
 ~~~swift
 func request<T: Decodable>(_ api: APIkind, _ type: T.Type, completionHandler: @escaping (T?, APIError?) -> ()) {
@@ -94,7 +94,7 @@ func request<T: Decodable>(_ api: APIkind, _ type: T.Type, completionHandler: @e
 }
 ~~~
 
-#### 2. Realm으로 저장한 검색 기록과, Request로 받아오는 데이터의 모델이 달라서, 역값전달에 문제가 생겼는데, 데이터를 전달할 수 있는 공통의 Model을 만들어서 해결
+#### 2. Realm과 API로 받아오는 Model이 상이하여 값 전달 데이터 일관성 이슈, 데이터를 전달하는 공통의 DTO Model을 이용, init을 여러개 만들어 데이터 일관성을 높이고 코드의 가독성을 용이하게 설계  
 ~~~swift
 final class SearchToMapDataPassingModel {
     let lat: Double
